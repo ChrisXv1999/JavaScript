@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="myCanvas"></canvas>
+</body>
+<script>
+  const canvas = document.getElementById('myCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function drawScaledLines() {
+    const lineSpacing = canvas.height / 1000; // 每条线之间的间距
+    const lineHeight = 1; // 线条的高度
+    const lineWidth = 10; // 线条的宽度
+
+    let startY = 0; // 起始Y坐标
+
+    for (let i = 0; i < 1000; i++) {
+      const color = i % 2 === 0 ? 'blue' : 'red';
+
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.moveTo(0, startY);
+      ctx.lineTo(lineWidth, startY);
+      ctx.stroke();
+
+      startY += lineSpacing + lineHeight; // 更新下一条线的起始Y坐标
+    }
+  }
+
+  // 缩放画布
+  canvas.height = 800 * window.devicePixelRatio;
+  canvas.width = 10 * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+  // 绘制缩放后的横线
+  drawScaledLines();
+</script>
+
+</html>

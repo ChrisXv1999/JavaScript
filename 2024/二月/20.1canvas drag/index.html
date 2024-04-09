@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    canvas {
+        margin: 50px;
+        background-color: #b1b3b8;
+    }
+    b {
+        font-size: 12px;
+        text-shadow: 0 0 0 #000;
+    }
+</style>
+
+<body>
+    <b>234</b>
+    <input type="color">
+    <canvas>
+    </canvas>
+    <script>
+        const cvs = document.querySelector('canvas') // 画布
+
+        const colorPicker = document.querySelector('input') // 颜色选择器
+
+        const ctx = cvs.getContext('2d')// 2d绘图环境
+
+        function init() {
+            const w = 500 // 画布宽度
+            const h = 300 // 画布高度
+            cvs.width = w * devicePixelRatio
+            cvs.height = h * devicePixelRatio
+            cvs.style.width = w + 'px'
+            cvs.style.height = h + 'px'
+        }
+
+        init()
+        const shapes = []
+
+        class Rectangle {
+            constructor(color, startX, startY) {
+                this.color = color
+                this.startX = startX
+                this.startY = startY
+                this.endX = startX
+                this.endY = startY
+            }
+
+            get minX() {
+                return Math.min(this.startX, this.endX)
+            }
+
+            get minY() {
+                return Math.min(this.startY, this.endY)
+            }
+
+            get maxX() {
+                return Math.max(this.startX, this.endX)
+            }
+
+            get maxY() {
+                return Math.max(this.startY, this.endY)
+            }
+
+            draw(ctx) {
+                ctx.beginPath()
+                ctx.moveTo(this.minX * devicePixelRatio, this.minY * devicePixelRatio)
+                ctx.lineTo(this.maxX * devicePixelRatio, this.minY * devicePixelRatio)
+                ctx.lineTo(this.maxX * devicePixelRatio, this.maxY * devicePixelRatio)
+                ctx.lineTo(this.minX * devicePixelRatio, this.maxY * devicePixelRatio)
+                ctx.lineTo(this.minX * devicePixelRatio, this.minY * devicePixelRatio)
+                ctx.fillStyle = this.color
+
+                ctx.fill()
+                ctx.strokeStyle = '#fff'
+                ctx.lineCap = 'square'
+                ctx.lineWidth = 2 * devicePixelRatio
+                ctx.stroke()
+            }
+
+        }
+
+
+        cvs.onmousedown = e => {
+            console.log(e.offsetX, e.offsetY)
+            const bounding = cvs.getBoundingClientRect()
+            const rect = new Rectangle(colorPicker.value, e.offsetX, e.offsetY)
+            const shape = getShape(e.offsetX, e.offsetY)
+            if (shape) {
+                const { startX, startY, endX, endY } = shape
+                const mouseX = e.offsetX
+                const mouseY = e.offsetY
+                window.onmousemove = e => {
+                    const distX = e.clientX - bounding.left - mouseX
+                    const distY = e.clientY - bounding.top - mouseY
+                    shape.startX = startX + distX
+                    shape.startY = startY + distY
+                    shape.endX = endX + distX
+                    shape.endY = endY + distY
+                }
+
+                console.log('拖动')
+            } else {
+                shapes.push(rect)
+                window.onmousemove = e => {
+                    rect.endX = e.clientX - bounding.left
+                    rect.endY = e.clientY - bounding.top
+
+                }
+            }
+
+
+            window.onmouseup = () => {
+                window.onmousemove = null
+                window.onmouseup = null
+            }
+        }
+        function draw() {
+            requestAnimationFrame(draw)
+            ctx.clearRect(0, 0, cvs.width, cvs.height) // 清空画布
+            shapes.forEach(item => {
+                item.draw(ctx)
+            }
+            )
+        }
+        draw()
+        function getShape(x, y) {
+            return shapes.find(item => {
+                return item.minX <= x && item.maxX >= x && item.minY <= y && item.maxY >= y
+            })
+        }
+    </script>
+
+</body>
+
+</html>

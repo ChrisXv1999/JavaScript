@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+</head>
+<body>
+    <form onsubmit="onSubmit(event)">
+        <input type="text" name="username"/>
+        <input type="text" name="username"/>
+        <select name="hobby" multiple>
+            <option value="sleep">睡觉</option>
+            <option value="sport">运动</option>
+        </select>
+        <button type="submit">提交</button>
+    </form>
+</body>
+<script>
+    function onSubmit(event){
+        event.preventDefault();
+        console.log(event.target);
+        const data = new FormData(event.target);
+        console.log(data);
+        data.forEach((value,key)=>{
+            console.log(key,value);
+        })
+    }
+</script>
+</html>

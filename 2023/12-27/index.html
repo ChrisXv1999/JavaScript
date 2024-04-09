@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    
+</body>
+<script>
+    function showDialog(htmlStr) {
+        const dialog = document.createElement('div');
+        dialog.style.position = 'fixed';
+        dialog.style.top = '50%';
+        dialog.style.left = '50%';
+        dialog.style.transform = "translate(-50%,-50%)"
+        dialog.innerHTML = htmlStr;
+        const close = document.createElement('button');
+        close.addEventListener('click',()=>{
+            dialog.remove();
+        });
+        close.textContent = '确定'
+        const footer = document.createElement('footer');
+        footer.style.textAlign = 'center';
+        footer.appendChild(close);
+        dialog.appendChild(footer);
+        document.body.appendChild(dialog);
+    }
+</script>
+</html>

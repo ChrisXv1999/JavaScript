@@ -1,0 +1,25 @@
+<head>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <select v-model="rd">
+            <option value="1" selected>济南</option>
+            <option value="2">青岛</option>
+            <option value="3">烟台</option>
+        </select>
+        {{rd}}
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            rd: '1'
+        }
+    })
+</script>
+</html>

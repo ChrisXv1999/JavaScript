@@ -1,0 +1,15 @@
+@import './base.scss';
+.x-button {
+    border-radius: $borderRidius;
+    border: none;
+    padding: 0 $maxPadding;
+    line-height: $lineHeight;
+    &--primary{
+        background-color: $primaryColor;
+    }
+    &--small{
+        background-color: $primaryColor;
+        line-height: $minLineHeight;
+        padding: 0 $minPadding;
+    }
+}

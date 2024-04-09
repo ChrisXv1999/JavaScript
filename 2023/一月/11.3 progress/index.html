@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .custom-progress {
+        width: 200px;
+        height: 20px;
+    }
+    .custom-progress::before {
+        content: attr(progress);
+        display: inline-block;
+        width: 100%;
+        height: 20px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: red;
+        background-clip: content-box;
+        padding-right: var(--padding-right,100%);
+        box-sizing: border-box;
+        transition: all 1s;
+    }
+</style>
+<body>
+    <div class="custom-progress" progress="20%" style="--padding-right:80%;">
+
+    </div>
+    
+</body>
+</html>

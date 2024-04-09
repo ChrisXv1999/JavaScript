@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="text">dom节点 nodeType 1
+    <p></p>
+  </div>
+  文本节点 nodeType 3
+  <script>
+    const oText =  document.getElementsByClassName('text')[0]
+    const observer = new MutationObserver(mutationRecords=>{
+      console.log(mutationRecords);
+    })
+    observer.observe(oText,{subtree: true, childList: true});
+    // mutationRecords target 被影响的节点 
+    // 无法监视子节点attribute的改变
+    // disconnect 取消监听
+    /**
+     * Node.ELEMENT_NODE 1 元素节点
+     * Node.TEXT_NODE 3 文本节点
+     * div
+     * nodeName => DIV 
+     * nodeType => 1
+     * 
+     * parentNode 父元素 =>element
+     * childNodes 子元素 =>NodeList
+     * previousSibling  上一个节点
+     * previousElementSibling 上一个元素节点
+     * nextSibling 下一个节点
+     * nextElementSibling 下一个元素节点
+     * 
+     * 具有name的HTMLCollection 可以通过name去取
+     * anchors所有带name的a标签
+     * links 所有带href的a标签
+     * forms images
+     * 
+     * 操作元素属性
+     * getAttribute
+     * setAttribute
+     * removeAttribute
+     * 
+     * element属性 attributes 
+     * getNamedItem
+     * removeNamedItem
+     * setNamedItem
+     * item
+     * 
+     * text 文本节点
+     * appendData 追加文本
+     * deleteData 删除文本 @param offset 开始位置 count 删除个数
+     * insertData 插入文本 @param offset 插入位置 text
+     * replaceData 替换文本 @param offset 开始位置 count 数量 text
+     * substringData offset count
+     * 
+     * 
+     * normalize 合并相邻的文本
+     * 
+     * 
+     * 
+     * MutationObserver
+     * 观察范围  
+     * subtree  子节点 boolean
+     * attributes 属性 boolean
+     * attributeFilter 属性[]
+     * attributeOldValue 是否记录旧值
+     * characterData 修改字符串是否变化
+     * characterDataOldValue
+     * childList
+     * 
+     * 
+     * takeRecords()
+     * 
+     * 
+     * matches() 是否能被选择器命中
+     * 
+     * classList
+     * add
+     * contains 是否存在
+     * remove 移除
+     * toggle 有删无加
+     * 
+     * 
+     * activeElement 获取焦点的元素
+     * hasFocus 是否获取焦点
+     * outerHTML 比innerHTML 多返回一个自身结构
+     * 
+     * 
+     * scrollIntoView 将元素滚动到可视区域 
+     * */ 
+  </script>
+</body>
+</html>

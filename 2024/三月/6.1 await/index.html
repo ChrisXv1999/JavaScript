@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+</body>
+<script>
+    function fetchData(url, isError) {
+        return new Promise(async (resolve, reject) => {
+            if (isError) reject('ise error');
+            const response = await fetch(url);
+            const data = await response.text();
+            resolve(data)
+        })
+    }
+
+    async function init() {
+        try {
+            // const obj = {
+            //     r1: await fetchData('http://localhost:3000/1'),
+            //     r2: await fetchData('http://localhost:3000/2', true),
+            //     r3: await fetchData('http://localhost:3000/3'),
+            //     r4: await fetchData('http://localhost:3000/4'),
+            // }
+            // console.log(obj);
+             fetchData('http://localhost:3000/3',true).catch(err=>err)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    init()
+
+    ['facility','doctor'].forEach(key => selectList.value[key+'List'].length === 0 && (formData.value[key]=[]));
+</script>
+
+</html>

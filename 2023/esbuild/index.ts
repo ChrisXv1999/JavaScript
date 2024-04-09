@@ -1,0 +1,1 @@
+const autor:string = 'chris';

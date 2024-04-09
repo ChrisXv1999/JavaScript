@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-size: 12px;
+        font-family: '宋体';
+    }
+</style>
+
+<body>
+    <p>白日依山尽 黄河入海流</p>
+    <canvas id="canvas" width="300" height="150"></canvas>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    function draw() {
+        ctx.font = "12px 宋体"
+        ctx.fillText('白日依山尽 黄河入海流', 0, 20);
+    }
+    draw()
+    let lastDevicePixelRatio = 1;
+    const ctxBasicHeight = 150;
+    const ctxBasicWidth = 300;
+    window.addEventListener('resize', () => {
+        if (window.devicePixelRatio !== lastDevicePixelRatio) {
+            canvas.height = ctxBasicHeight * window.devicePixelRatio;
+            canvas.width = ctxBasicWidth * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            draw();
+            lastDevicePixelRatio = window.devicePixelRatio;
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,14 @@
+{
+    "students": [
+        {"name": "chris","age":18},
+        {"name": "xv","age":18},
+        {"name": "yang","age":18}
+    ],
+    "classes": [
+        {
+            "id": 1,
+            "name": "front-end 01",
+            "description": "前端一班"
+        }
+    ]
+}

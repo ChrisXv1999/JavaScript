@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./ajaxInduct.js"></script>
+<script>
+    ajax({url: './index.js',method: 'GET'});
+    try{
+        let add = new Function('a','b','if(!b) b = 0; return a + b')
+        console.log(add(1));
+    }catch(e){
+
+    }
+</script>
+</html>

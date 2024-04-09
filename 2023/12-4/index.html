@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /*
+      属性值的计算过程
+      1 确定声明值
+        将没有冲突的值作为css属性值
+      2. 层叠冲突 
+       2.1比较重要性 作者样式表 覆盖浏览器默认样式
+       2.2比较特殊性 比较权重
+       2.3比较源次序 代码书写靠后的覆盖前面的
+      3.使用继承
+        对仍然没有值的属性 若可以继承 继承父元素的值
+        一般跟文字相关的可以继承
+      4.使用默认值 
+      任何单位最终都会换算成绝对单位 px
+    **/
+    .relative-ele {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        background-color: #f99;
+    }
+    .container {
+        box-sizing: border-box;
+        width: 50%;
+        background-color: skyblue;
+        height: 200px;
+        padding: 100px;
+    }
+    .normal {
+        width: 50%;
+        background-color: black;
+        height: 100px;
+    }
+    /* 定位元素不设置top left 会和未定位前位置一致 */
+    .absolute-ele {
+        position: absolute;
+        width: 50%;
+        background-color:aqua;
+        height: 100px;
+    }
+  </style>
+  <body>
+    <div class="relative-ele">
+      <div class="container">
+        <!-- 普通元素的百分比宽度只跟父元素的内容区域有关 -->
+        <div class="normal">
+
+        </div>
+        <!-- 设置了绝对定位的元素的百分比宽高会根据最近的定位父元素的padding+内容区域有关 -->
+        <div class="absolute-ele">
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

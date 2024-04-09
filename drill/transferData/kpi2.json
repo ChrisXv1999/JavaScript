@@ -1,0 +1,590 @@
+{
+  "totalBytes": {
+    "name": "总流量",
+    "unit": "BYTE",
+    "kpi": "totalBytes",
+    "type": "flow_kpis"
+  },
+  "clientBytes": {
+    "name": "客户端流量",
+    "unit": "BYTE",
+    "kpi": "clientBytes",
+    "type": "flow_kpis"
+  },
+  "serverBytes": {
+    "name": "服务器流量",
+    "unit": "BYTE",
+    "kpi": "serverBytes",
+    "type": "flow_kpis"
+  },
+  "totalRate": {
+    "name": "会话总速率",
+    "unit": "BPS",
+    "kpi": "totalRate",
+    "type": "flow_kpis"
+  },
+  "clientRate": {
+    "name": "客户端会话速率",
+    "unit": "BPS",
+    "kpi": "clientRate",
+    "type": "flow_kpis"
+  },
+  "serverRate": {
+    "name": "服务器会话速率",
+    "unit": "BPS",
+    "kpi": "serverRate",
+    "type": "flow_kpis"
+  },
+  "totalAvgRate": {
+    "name": "平均速率",
+    "unit": "BPS",
+    "kpi": "totalAvgRate",
+    "type": "flow_kpis"
+  },
+  "clientAvgRate": {
+    "name": "客户端平均速率",
+    "unit": "BPS",
+    "kpi": "clientAvgRate",
+    "type": "flow_kpis"
+  },
+  "serverAvgRate": {
+    "name": "服务器平均速率",
+    "unit": "BPS",
+    "kpi": "serverAvgRate",
+    "type": "flow_kpis"
+  },
+  "totalPkts": {
+    "name": "总数据包",
+    "unit": "NUMBER",
+    "kpi": "totalPkts",
+    "type": "flow_kpis"
+  },
+  "clientPkts": {
+    "name": "客户端包数",
+    "unit": "NUMBER",
+    "kpi": "clientPkts",
+    "type": "flow_kpis"
+  },
+  "serverPkts": {
+    "name": "服务器包数",
+    "unit": "NUMBER",
+    "kpi": "serverPkts",
+    "type": "flow_kpis"
+  },
+  "totalPktRate": {
+    "name": "总包率",
+    "unit": "PPS",
+    "kpi": "totalPktRate",
+    "type": "flow_kpis"
+  },
+  "totalSegLostNum": {
+    "name": "丢包总数",
+    "unit": "NUMBER",
+    "kpi": "totalSegLostNum",
+    "type": "flow_kpis"
+  },
+  "clientSegLostNum": {
+    "name": "客户端丢包数量",
+    "unit": "NUMBER",
+    "kpi": "clientSegLostNum",
+    "type": "flow_kpis"
+  },
+  "serverSegLostNum": {
+    "name": "服务器丢包数量",
+    "unit": "NUMBER",
+    "kpi": "serverSegLostNum",
+    "type": "flow_kpis"
+  },
+  "totalPayloadByteNum": {
+    "name": "有效载荷",
+    "unit": "BYTE",
+    "kpi": "totalPayloadByteNum",
+    "type": "flow_kpis"
+  },
+  "clientPayloadByteNum": {
+    "name": "客户端有效载荷",
+    "unit": "BYTE",
+    "kpi": "clientPayloadByteNum",
+    "type": "flow_kpis"
+  },
+  "serverPayloadByteNum": {
+    "name": "服务器有效载荷",
+    "unit": "BYTE",
+    "kpi": "serverPayloadByteNum",
+    "type": "flow_kpis"
+  },
+  "totalDataPktNum": {
+    "name": "负载数据包",
+    "unit": "NUMBER",
+    "kpi": "totalDataPktNum",
+    "type": "flow_kpis"
+  },
+  "clientDataPktNum": {
+    "name": "客户端负载数据包",
+    "unit": "NUMBER",
+    "kpi": "clientDataPktNum",
+    "type": "flow_kpis"
+  },
+  "serverDataPktNum": {
+    "name": "服务器负载数据包",
+    "unit": "NUMBER",
+    "kpi": "serverDataPktNum",
+    "type": "flow_kpis"
+  },
+  "bytesRespPercent": {
+    "name": "字节收发比",
+    "unit": "PERCENT",
+    "kpi": "bytesRespPercent",
+    "type": "flow_kpis"
+  },
+  "pktsRespPercent": {
+    "name": "数据包收发比",
+    "unit": "PERCENT",
+    "kpi": "pktsRespPercent",
+    "type": "flow_kpis"
+  },
+  "clientReqNum": {
+    "name": "请求量",
+    "unit": "NUMBER",
+    "kpi": "clientReqNum",
+    "type": "tcp_kpis"
+  },
+  "avgPktLen": {
+    "name": "平均包长",
+    "unit": "BYTE",
+    "kpi": "avgPktLen",
+    "type": "flow_kpis"
+  },
+  "utilization": {
+    "name": "利用率",
+    "unit": "PERCENT",
+    "kpi": "utilization",
+    "type": "flow_kpis"
+  },
+  "peakBps": {
+    "name": "峰值速率",
+    "unit": "STRING",
+    "kpi": "peakBps",
+    "type": "flow_kpis"
+  },
+  "totalZeroWindow": {
+    "name": "零窗口",
+    "unit": "NUMBER",
+    "kpi": "totalZeroWindow",
+    "type": "tcp_kpis"
+  },
+  "clientZeroWindow": {
+    "name": "客户端零窗口",
+    "unit": "NUMBER",
+    "kpi": "clientZeroWindow",
+    "type": "tcp_kpis"
+  },
+  "serverZeroWindow": {
+    "name": "服务器零窗口",
+    "unit": "NUMBER",
+    "kpi": "serverZeroWindow",
+    "type": "tcp_kpis"
+  },
+  "totalRetx": {
+    "name": "重传数量",
+    "unit": "NUMBER",
+    "kpi": "totalRetx",
+    "type": "tcp_kpis"
+  },
+  "clientRetx": {
+    "name": "客户端重传数量",
+    "unit": "NUMBER",
+    "kpi": "clientRetx",
+    "type": "tcp_kpis"
+  },
+  "serverRetx": {
+    "name": "服务器重传数量",
+    "unit": "NUMBER",
+    "kpi": "serverRetx",
+    "type": "tcp_kpis"
+  },
+  "totalRetxRate": {
+    "name": "重传率",
+    "unit": "PERCENT",
+    "kpi": "totalRetxRate",
+    "type": "tcp_kpis"
+  },
+  "clientRetxRate": {
+    "name": "客户端重传率",
+    "unit": "PERCENT",
+    "kpi": "clientRetxRate",
+    "type": "tcp_kpis"
+  },
+  "serverRetxRate": {
+    "name": "服务器重传率",
+    "unit": "PERCENT",
+    "kpi": "serverRetxRate",
+    "type": "tcp_kpis"
+  },
+  "totalRst": {
+    "name": "RST数量",
+    "unit": "NUMBER",
+    "kpi": "totalRst",
+    "type": "tcp_kpis"
+  },
+  "clientRst": {
+    "name": "客户端RST",
+    "unit": "NUMBER",
+    "kpi": "clientRst",
+    "type": "tcp_kpis"
+  },
+  "serverRst": {
+    "name": "服务器RST",
+    "unit": "NUMBER",
+    "kpi": "serverRst",
+    "type": "tcp_kpis"
+  },
+  "clientSyn": {
+    "name": "客户端SYN",
+    "unit": "NUMBER",
+    "kpi": "clientSyn",
+    "type": "tcp_kpis"
+  },
+  "serverSyn": {
+    "name": "服务器SYN",
+    "unit": "NUMBER",
+    "kpi": "serverSyn",
+    "type": "tcp_kpis"
+  },
+  "totalFin": {
+    "name": "TCP FIN",
+    "unit": "NUMBER",
+    "kpi": "totalFin",
+    "type": "tcp_kpis"
+  },
+  "clientFin": {
+    "name": "FIN客户端数量",
+    "unit": "NUMBER",
+    "kpi": "clientFin",
+    "type": "tcp_kpis"
+  },
+  "serverFin": {
+    "name": "FIN服务器数量",
+    "unit": "NUMBER",
+    "kpi": "serverFin",
+    "type": "tcp_kpis"
+  },
+  "failServerRstNum": {
+    "name": "建连失败数-服务器RST",
+    "unit": "NUMBER",
+    "kpi": "failServerRstNum",
+    "type": "tcp_kpis"
+  },
+  "failClientRstNum": {
+    "name": "建连失败数-客户端RST",
+    "unit": "NUMBER",
+    "kpi": "failClientRstNum",
+    "type": "tcp_kpis"
+  },
+  "failServerTimeoutNum": {
+    "name": "建连失败数-服务器超时",
+    "unit": "NUMBER",
+    "kpi": "failServerTimeoutNum",
+    "type": "tcp_kpis"
+  },
+  "failClientTimeoutNum": {
+    "name": "建连失败数-客户端超时",
+    "unit": "NUMBER",
+    "kpi": "failClientTimeoutNum",
+    "type": "tcp_kpis"
+  },
+  "lastSynIpId": {
+    "name": "SYN IP.id",
+    "unit": "NUMBER",
+    "kpi": "lastSynIpId",
+    "type": ""
+  },
+  "lastSynSeqNum": {
+    "name": "SYN TCP.seq",
+    "unit": "NUMBER",
+    "kpi": "lastSynSeqNum",
+    "type": ""
+  },
+  "successfulTcpConnNum": {
+    "name": "建连成功数",
+    "unit": "NUMBER",
+    "kpi": "successfulTcpConnNum",
+    "type": "tcp_kpis"
+  },
+  "totalSegLostPercent": {
+    "name": "丢包率",
+    "unit": "PERCENT",
+    "kpi": "totalSegLostPercent",
+    "type": "tcp_kpis"
+  },
+  "serverRespNum": {
+    "name": "响应数",
+    "unit": "NUMBER",
+    "kpi": "serverRespNum",
+    "type": "tcp_kpis"
+  },
+  "successfulTrans": {
+    "name": "TCP交易数",
+    "unit": "NUMBER",
+    "kpi": "successfulTrans",
+    "type": "tcp_kpis"
+  },
+  "connTime": {
+    "name": "网络延迟",
+    "unit": "US",
+    "kpi": "connTime",
+    "type": "time_kpis"
+  },
+  "clientConnTime": {
+    "name": "客户端延迟",
+    "unit": "US",
+    "kpi": "clientConnTime",
+    "type": "time_kpis"
+  },
+  "serverConnTime": {
+    "name": "服务器延迟",
+    "unit": "US",
+    "kpi": "serverConnTime",
+    "type": "time_kpis"
+  },
+  "ackDelayTimeAvg": {
+    "name": "ACK 延时",
+    "unit": "US",
+    "kpi": "ackDelayTimeAvg",
+    "type": ""
+  },
+  "clientAckDelayTimeAvg": {
+    "name": "客户端ACK延时",
+    "unit": "US",
+    "kpi": "clientAckDelayTimeAvg",
+    "type": ""
+  },
+  "serverAckDelayTimeAvg": {
+    "name": "服务器ACK延时",
+    "unit": "US",
+    "kpi": "serverAckDelayTimeAvg",
+    "type": ""
+  },
+  "clientRespTimeAvg": {
+    "name": "客户端响应时间",
+    "unit": "US",
+    "kpi": "clientRespTimeAvg",
+    "type": "time_kpis"
+  },
+  "avgTransRespTime": {
+    "name": "服务器响应时间",
+    "unit": "US",
+    "kpi": "avgTransRespTime",
+    "type": "time_kpis"
+  },
+  "transRespTime": {
+    "name": "总响应时间",
+    "unit": "US",
+    "kpi": "transRespTime",
+    "type": "time_kpis"
+  },
+  "peakTransRespTime": {
+    "name": "峰值响应时间",
+    "unit": "US",
+    "kpi": "peakTransRespTime",
+    "type": "time_kpis"
+  },
+  "firstTransRespTime": {
+    "name": "首次响应时间",
+    "unit": "US",
+    "kpi": "firstTransRespTime",
+    "type": ""
+  },
+  "clientTransferTime": {
+    "name": "客户端请求平均传输时间",
+    "unit": "US",
+    "kpi": "clientTransferTime",
+    "type": "time_kpis"
+  },
+  "serverTransferTime": {
+    "name": "服务器响应平均传输时间",
+    "unit": "US",
+    "kpi": "serverTransferTime",
+    "type": "time_kpis"
+  },
+  "timeDuration": {
+    "name": "持续时间",
+    "unit": "US",
+    "kpi": "timeDuration",
+    "type": "time_kpis"
+  },
+  "clientLocation": {
+    "name": "源位置",
+    "unit": "STRING",
+    "kpi": "clientLocation",
+    "type": "other"
+  },
+  "serverLocation": {
+    "name": "目的位置",
+    "unit": "STRING",
+    "kpi": "serverLocation",
+    "type": "other"
+  },
+  "clientIsp": {
+    "name": "源ISP",
+    "unit": "STRING",
+    "kpi": "clientIsp",
+    "type": "other"
+  },
+  "serverIsp": {
+    "name": "目的ISP",
+    "unit": "STRING",
+    "kpi": "serverIsp",
+    "type": "other"
+  },
+  "clientMac": {
+    "name": "源MAC",
+    "unit": "STRING",
+    "kpi": "clientMac",
+    "type": "other"
+  },
+  "serverMac": {
+    "name": "目的MAC",
+    "unit": "STRING",
+    "kpi": "serverMac",
+    "type": "other"
+  },
+  "clientMacVendor": {
+    "name": "源MAC厂商",
+    "unit": "STRING",
+    "kpi": "clientMacVendor",
+    "type": "other"
+  },
+  "serverMacVendor": {
+    "name": "目的MAC厂商",
+    "unit": "STRING",
+    "kpi": "serverMacVendor",
+    "type": "other"
+  },
+  "egressSrcIp": {
+    "name": "Underlay上行源IP",
+    "unit": "STRING",
+    "kpi": "egressSrcIp",
+    "type": ""
+  },
+  "egressSrcPort": {
+    "name": "Underlay上行源端口",
+    "unit": "STRING",
+    "kpi": "egressSrcPort",
+    "type": ""
+  },
+  "egressDstIp": {
+    "name": "Underlay上行目的IP",
+    "unit": "STRING",
+    "kpi": "egressDstIp",
+    "type": ""
+  },
+  "egressDstPort": {
+    "name": "Underlay上行目的端口",
+    "unit": "STRING",
+    "kpi": "egressDstPort",
+    "type": ""
+  },
+  "ingressSrcIp": {
+    "name": "Underlay下行源IP",
+    "unit": "STRING",
+    "kpi": "ingressSrcIp",
+    "type": ""
+  },
+  "ingressSrcPort": {
+    "name": "Underlay下行源端口",
+    "unit": "STRING",
+    "kpi": "ingressSrcPort",
+    "type": ""
+  },
+  "ingressDstIp": {
+    "name": "Underlay下行目的IP",
+    "unit": "STRING",
+    "kpi": "ingressDstIp",
+    "type": ""
+  },
+  "ingressDstPort": {
+    "name": "Underlay下行目的端口",
+    "unit": "STRING",
+    "kpi": "ingressDstPort",
+    "type": ""
+  },
+  "dpiCategory": {
+    "name": "App协议类型",
+    "unit": "STRING",
+    "kpi": "dpiCategory",
+    "type": "other"
+  },
+  "dpiProtocol": {
+    "name": "App协议名",
+    "unit": "STRING",
+    "kpi": "dpiProtocol",
+    "type": "other"
+  },
+  "clientSegLostPercent": {
+    "name": "下行丢包率",
+    "unit": "PERCENT",
+    "kpi": "clientSegLostPercent",
+    "type": "flow_kpis"
+  },
+  "serverSegLostPercent": {
+    "name": "上行丢包率",
+    "unit": "PERCENT",
+    "kpi": "serverSegLostPercent",
+    "type": "flow_kpis"
+  },
+  "outOfOrderNum": {
+    "name": "乱序包数",
+    "unit": "NUMBER",
+    "kpi": "outOfOrderNum",
+    "type": "flow_kpis"
+  },
+  "outOfOrderPercent": {
+    "name": "乱序率",
+    "unit": "PERCENT",
+    "kpi": "outOfOrderPercent",
+    "type": "flow_kpis"
+  },
+  "pingDropNum": {
+    "name": "ICMP丢包数",
+    "unit": "NUMBER",
+    "kpi": "pingDropNum",
+    "type": ""
+  },
+  "avgPingRespTime": {
+    "name": "ICMP平均响应时间",
+    "unit": "US",
+    "kpi": "avgPingRespTime",
+    "type": ""
+  },
+  "peakPingRespTime": {
+    "name": "ICMP峰值响应时间",
+    "unit": "US",
+    "kpi": "peakPingRespTime",
+    "type": ""
+  },
+  "valleyPingRespTime": {
+    "name": "ICMP谷值响应时间",
+    "unit": "US",
+    "kpi": "valleyPingRespTime",
+    "type": ""
+  },
+  "pingDropPercent": {
+    "name": "ICMP丢包率",
+    "unit": "PERCENT",
+    "kpi": "pingDropPercent",
+    "type": ""
+  },
+  "clientFirstTTL": {
+    "name": "客户端操作系统",
+    "unit": "NUMBER",
+    "kpi": "clientFirstTTL",
+    "type": "other"
+  },
+  "serverFirstTTL": {
+    "name": "服务器操作系统",
+    "unit": "NUMBER",
+    "kpi": "serverFirstTTL",
+    "type": "other"
+  }
+}

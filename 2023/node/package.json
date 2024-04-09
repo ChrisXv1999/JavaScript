@@ -1,0 +1,15 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "type":"commonjs",
+  "main": "index.js",
+  "scripts": {
+    "preni": "node pre.js",
+    "ni": "node index.js",
+    "postni": "node post.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

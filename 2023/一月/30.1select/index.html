@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="id"></div>
+    <button onclick="getValue()">get</button>
+</body>
+<script>
+    function generateCustomSizeSelect(parentElement,initValue,cb){
+        const options = [
+            {label:di18n.$t("rule_manage.all_package"),value: di18n.$t("rule_manage.all_package")},
+            {label:di18n.$t("rule_manage.package_header") + 54,value:'54'},
+            {label:di18n.$t("rule_manage.package_header") + 64,value:'64'},
+            {label:di18n.$t("rule_manage.package_header") + 128,value:'128'},
+            {label:di18n.$t("rule_manage.no_save_package"),value:'0'},
+            {label:di18n.$t("common.custom"),value:'custom'},
+        ]
+        let mode = options.some(({value})=>value===initValue) ? 'select' : 'input';
+        const oInput = _createElement('input',{class:'custom-size-input'});
+        if(mode === 'select'){
+            oInput.style.display = 'none';
+        }
+        const oSelect = _createElement('select',{class:'custom-size-select'},options.map(({label,value}) => {
+           const oOption = _createElement('option',{value});
+           oOption.textContent = label;
+           return oOption;
+        }));
+        oSelect.addEventListener('change',function(){
+            if(this.value === 'custom'){
+                mode = 'input';
+                oInput.style.display = '';
+            }else {
+                mode = 'select';
+                oInput.value = '';
+            }
+        })
+        parentElement.appendChild(oSelect);
+        parentElement.appendChild(oInput);
+        if(typeof cb === 'function') cb();
+        function _createElement(tag,props={},child=[]){
+            const oElement = document.createElement(tag);
+            Object.entries(props).forEach(([attr,value])=>{
+                oElement.setAttribute(attr,value)
+            })
+            child.forEach(c=>{
+                oElement.appendChild(c);
+            })
+            return oElement
+        }
+        return ()=>{
+            return mode === 'select' ? oSelect.value : oInput.value
+        }
+    }
+
+</script>
+</html>

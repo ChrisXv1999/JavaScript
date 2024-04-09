@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "esbuild app.jsx --bundle --outfile=out.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.19.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

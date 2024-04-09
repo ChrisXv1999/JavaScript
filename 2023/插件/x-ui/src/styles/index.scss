@@ -1,0 +1,9 @@
+//use he import 的区别
+@import  './base.scss';
+@import './font.scss';
+@import './layout.scss';
+@import './button.scss';
+.test {
+    display: flex;
+    color: $primaryColor;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function delay(delay) {
+            const start = Date.now();
+            while (Date.now() - start < delay) { }
+        }
+        //try catch 无法捕获异步错误
+        // try {
+        //     setTimeout(() => {
+        //         console.log(a);
+        //     }, 100)
+        // } catch (e) {
+        //     console.log(e);
+        // }
+        // delay(300)
+        // setTimeout(() => {
+        //     console.log(123);
+        // }, 100)
+        //Promise 报错会直接进入捕获 try catch 捕获不到promise中的错误
+        function say(){
+            console.log(a);
+        }
+        try {
+            new Promise((resolve,reject)=>{
+                // console.log(a);
+                resolve()
+            }).then(()=>{
+                say()
+                console.log('resolve');
+            }).catch((e)=>{
+                console.log('reject');
+            })
+        }catch(e){
+            console.log(e);
+        }
+        console.log(1);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index</title>
+  </head>
+  <body>
+    <input type="file" id="file" multiple webkitdirectory/>
+ 
+    <button onclick="btnClick()">上传</button>
+ 
+    <!-- 表单的同步提交及缺点
+        什么是表单的同步提交
+        通过点击 submit 按钮，触发表单提交的操作，从而使页面跳转到 action URL 的行为，叫做表单的同步提交
+        表单同步提交的缺点
+        <form> 表单同步提交后，整个页面会发生跳转，跳转到 action URL 所指向的地址，用户体验很差
+        <form> 表单同步提交后，页面之前的状态和数据会丢失 -->
+ 
+    <!-- 阻止表单默认提交行为
+        当监听到表单的提交事件以后，可以调用事件对象的 event.preventDefault() 函数，来阻止表单的提交和页面的跳转 -->
+ 
+    <!-- 文件名为：file1 后端接收到的对象名就是 file1:{} 对象 -->
+    <form action="http://localhost:3002/upload_file/pcap/group/upload" method="POST" enctype="multipart/form-data">
+
+      <input multiple type="file" name="file"  />
+      <input multiple type="text" name="file1" value="1"  />
+      <input type="submit" value="提交" />
+    </form>
+ 
+    <script>
+      var url = ''
+      var file = document.getElementById('file')
+ 
+      var files1 = ''
+ 
+      file.onchange = function () {
+        files1 = this.files
+      }
+ 
+      function btnClick() {
+        for(let i =0; i<files1.length; i++) {
+          uploadFile(files1[i])
+        }
+      }
+
+      function uploadFile(file){
+        let formData = new FormData();
+        formData.append('file1', file)
+        let xhr = new XMLHttpRequest()
+        xhr.open('post', 'http://127.0.0.1:3002/upload_file', true)
+        // xhr.setRequestHeader('content-type' , 'application/x-www-form-urlencoded');
+        xhr.send(formData)
+        xhr.onreadystatechange = () => {
+          //   console.log(xhr.response)
+          console.log(url)
+        }
+      }
+    </script>
+  </body>
+</html>
