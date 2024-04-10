@@ -10,3 +10,4 @@ function initAdd(a){
 }
 initAdd(a);
 console.log(add(b));//4
+log
