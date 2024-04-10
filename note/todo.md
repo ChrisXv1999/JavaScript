@@ -1,0 +1,15 @@
+##### 代办列表
+- [ ] 实现单项链表   [参考连接→](https://2xiao.github.io/leetcode-js/leetcode/ds/linked_list.html#%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8)
+    - [ ] Node 
+    - [ ] SingleLinkedList 
+        - [ ] append(data) 向链表尾部添加一个新的项；
+        - [ ] insert(position, data) 向链表的特定位置插入一个新的项；
+        - [ ] getData(position) 获取对应位置的节点；
+        - [ ] indexOf(data) 返回节点在链表中的索引，如果链表中没有该节点就返回 -1；
+        - [ ] update(position, data) 修改某个位置的节点；
+        - [ ] removeAt(position) 从链表的特定位置移除一项；
+        - [ ] remove(data) 从链表中移除一项；
+        - [ ] isEmpty() 判断链表是否为空，返回 Boolean 值；
+        - [ ] count() 返回链表包含的节点个数，与数组的 length 属性类似；
+        - [ ] toString() 将链表中节点以字符串形式返回；
+    - [ ] 扩展 实现双向链表 从单向链表扩展而来 
