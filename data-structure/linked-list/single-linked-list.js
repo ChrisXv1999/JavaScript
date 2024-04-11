@@ -9,11 +9,13 @@ class SingleLinkedList{
     tail = null;
     size = 0;
     constructor(Node){
-        this.Node = Node;
+        this.init(Node);
     }
-    generateNode(data){
-        const node = new this.Node(data);
-        return node
+    init(Node){
+        this.nodeInstance = new Node();
+        this.generateNode = (data)=>{
+            return new Node(data)
+        };
     }
     append(data){
         const node = this.generateNode(data);
@@ -28,14 +30,16 @@ class SingleLinkedList{
     }
     insert(position,data){
         if(position > this.size || position < 0) return false;
-        let current = this.head;
-        for(let i = 1; i <position; i++){
+        let current = this.nodeInstance;
+        this.nodeInstance.next = this.head;
+        for(let i = 0; i <position; i++){
             current = current.next;
         }
         const node = this.generateNode(data);
         const next = current.next
         current.next = node;
         node.next = next;
+        this.head = this.nodeInstance.next;
         this.size ++;
         return true;
     }
@@ -66,26 +70,30 @@ class SingleLinkedList{
         current.val = data;
         return true;
     }
-    //未实现
     remove(data){
-        let current = this.head;
-        let preNode = this.head;
+        this.nodeInstance.next = this.head;
+        let current = this.nodeInstance;
+        let preNode = this.nodeInstance;
         while(current){
             if(current.val === data){
                 preNode.next = current.next;
                 current = preNode;
+                this.size--;
             }
-            current = current.next;
             preNode = current;
+            current = current.next;
         }
+        this.head = this.nodeInstance.next
     }
     removeAt(position){
         if(position > this.size || position < 0) return false;
-        let current = this.head;
-        for(let i = 0; i <position - 1; i++){
+        let current = this.nodeInstance;
+        this.nodeInstance.next = this.head;
+        for(let i = 0; i <position; i++){
             current = current.next;
         }
         current.next = current.next.next;
+        this.head = this.nodeInstance.next;
         this.size --;
     }
     toString(){
@@ -109,7 +117,11 @@ const list = new SingleLinkedList(Node);
 list.append(1);
 list.append(3);
 list.insert(1,2)
+list.insert(0,0)
+list.insert(1,0)
+list.insert(1,0)
 list.append(4);
+list.remove(0);
 console.log(list.getData(1));
 console.log('====================================');
 console.log(list);
