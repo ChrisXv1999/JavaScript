@@ -14,3 +14,10 @@
         - [x] toString() 将链表中节点以字符串形式返回；
     - [ ] 扩展 实现双向链表 从单向链表扩展而来 
     - [ ] ts版
+- [ ] 实现链式栈
+    - [ ] LinkedListStack  
+        - [ ] push(data) 入栈
+        - [ ] pop(data) 出栈
+        - [ ] clear(data) 清空栈
+        - [ ] count(data) 获取栈中元素的数量
+        - [ ] print(data) 打印栈
