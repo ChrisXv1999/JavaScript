@@ -1,7 +1,7 @@
 ##### 代办列表
 - [ ] 实现单项链表   [参考连接→](https://2xiao.github.io/leetcode-js/leetcode/ds/linked_list.html#%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8)
     - [x] Node 
-    - [x] SingleLinkedList 
+    - [x] [SingleLinkedList](../data-structure/linked-list-stack/linked-list-stack.js) 
         - [x] append(data) 向链表尾部添加一个新的项；
         - [x] insert(position, data) 向链表的特定位置插入一个新的项；
         - [x] getData(position) 获取对应位置的节点；
@@ -21,3 +21,12 @@
         - [x] clear() 清空栈
         - [x] count() 获取栈中元素的数量
         - [x] print/toSting() 打印栈
+- [x] 实现链式树
+    - [x] LinkedListTree  
+        - [x] 前序遍历
+        - [x] 中序遍历
+        - [x] 后序遍历
+- [ ] 实现堆
+    - [ ] Heap  
+        - [ ] MaxHeap 小顶堆
+        - [ ] MinHeap 大顶堆

@@ -5,7 +5,7 @@ class Node {
         this.val = val;
     }
 }
-// add pop
+// add
 class LinkedListTree {
     size = 0;
     root = null;
@@ -57,15 +57,35 @@ class LinkedListTree {
         const list = [];
         function _preOrder(node){
             if(!node)return
-            
+            list.push(node.val);
+            _preOrder(node.left);
+            _preOrder(node.right);
         }
         _preOrder(this.root)
         return list
     }
     inOrder(){
+        const list = [];
+        function _inOrder(node){
+            if(!node)return
+            _inOrder(node.left);
+            list.push(node.val);
+            _inOrder(node.right);
+        }
+        _inOrder(this.root)
+        return list
         
     }
     postOrder(){
+        const list = [];
+        function _postOrder(node){
+            if(!node)return
+            _postOrder(node.left);
+            _postOrder(node.right);
+            list.push(node.val);
+        }
+        _postOrder(this.root)
+        return list
 
     }
 
@@ -73,4 +93,3 @@ class LinkedListTree {
 const tree = new LinkedListTree();
 tree.add(0).add(1).add(2).add(3)
 .add(4).add(5).add(6)
-console.log(tree.preOrder());
