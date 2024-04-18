@@ -4,7 +4,7 @@
 
 - **作用：** 在Webpack处理`entry`选项之前触发。
 - **参数：** `context` - 当前的编译上下文。
-- **示例用途：** 
+- **示例用途：** s
 - **如何使用：** 
   ```javascript
   compiler.hooks.entryOption.tap('MyPlugin', (context) => {

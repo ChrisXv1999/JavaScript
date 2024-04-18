@@ -1,5 +1,7 @@
 import webpack from 'webpack';
 import ClearBuild from '../plugin/clear-build/clear-build.js';
+import RemovePlugin from '../plugin/removePlugin/removePlugin.js';
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 //asset Node.js 12.2.0
 import packageConfig from './package.json' assert { type: 'json' };
 const { version } = packageConfig;
@@ -24,13 +26,32 @@ const config = {
         new webpack.DefinePlugin({
             Version: JSON.stringify(version)
         }),
-        new ClearBuild()
+        new ClearBuild(),
+        new RemovePlugin(),
+        new HtmlWebpackPlugin({
+            template: './public/index.html', // 模板文件路径
+            inject: 'body' // 将js插入到body底部
+        })
     ],
     module: {
         rules: [
             { test: /\.css$/, use: 'css-loader' },
             { test: /\.ts$/, use: 'ts-loader' },
         ]
+    },
+    devtool: 'source-map',
+    devServer: {
+        port: '9999',
+        proxy: [{
+            '/api': {
+                target: 'https://api.githup.com',
+                pathRewrite: {
+                    '^/api': ''
+                },
+                changeOrigin: true,
+
+            },
+        }]
     }
 };
 
