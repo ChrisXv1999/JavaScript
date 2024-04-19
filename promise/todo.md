@@ -1,0 +1,15 @@
+##### 代办列表
+- [ ] [实现Promise](./promise.js)
+    - [x] 静态resolve 
+    - [x] 静态reject
+    - [ ] 静态all
+    - [ ] 静态race
+    - [ ] 静态allSettled
+    - [x] then 方法
+    - [x] catch 方法
+    - [x] finally 方法
+    - [ ] 链式调用
+    - [x] 错误处理
+- [ ] ts版本
+- 问题
+    - [ ] <font color='#f00'> then 调用之后 如何让下一个拿到结果</font>
