@@ -26,6 +26,7 @@ const config = {
         new webpack.DefinePlugin({
             Version: JSON.stringify(version)
         }),
+        new webpack.HotModuleReplacementPlugin(),
         new ClearBuild(),
         new RemovePlugin(),
         new HtmlWebpackPlugin({
@@ -42,6 +43,8 @@ const config = {
     devtool: 'source-map',
     devServer: {
         port: '9999',
+        hot: true,
+        open: true,
         proxy: [{
             '/api': {
                 target: 'https://api.githup.com',
