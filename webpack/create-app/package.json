@@ -1,0 +1,26 @@
+{
+  "name": "create-app",
+  "version": "0.0.1",
+  "description": "",
+  "bin": {
+    "create-app": "dist/index.js"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsc --watch --sourcemap",
+    "check": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "prompts": "^2.4.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}

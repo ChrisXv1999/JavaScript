@@ -1,0 +1,38 @@
+{
+  "name": "template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./src/main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx webpack server"
+  },
+  "keywords": [
+    "template",
+    "vue",
+    "webpack"
+  ],
+  "author": "chris",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.4.23",
+    "css-loader": "^7.1.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "url-loader": "^4.1.1",
+    "vue-loader": "^17.4.2",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "dependencies": {
+    "vue": "^3.4.23"
+  }
+}
