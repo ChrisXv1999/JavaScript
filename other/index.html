@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+*{margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font: 100%/1.25 Helvetica, arial, helvetica;
+    color: #fff;
+    perspective: 1000px;
+    background: linear-gradient(to bottom, #444, #999);
+}
+
+.book {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 50%;
+    margin-top: -150px;
+    cursor: pointer;
+    user-select: none;
+    transform: rotateX(60deg);
+}
+
+.page {
+    width: 300px;
+    height: 300px;
+    padding: 1em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 2em;
+}
+
+.front {
+    background-image: url(https://i2.hdslb.com/bfs/archive/a3ab8844e8182b09eb0da878420c10d106b7a517.jpg);
+    background-size: cover;
+}
+
+.back {
+    background-color: #fff;
+}
+
+.front-cover {
+    transform-origin: 0 50%;
+    transform: rotateY(-120deg);
+}
+
+.p3d {
+    transform-style: preserve-3d;
+}
+
+.front-cover .back {
+    background-image: url(https://i2.hdslb.com/bfs/archive/a3ab8844e8182b09eb0da878420c10d106b7a517.jpg);
+    background-size: cover;
+    transform: translateZ(3px);
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.shadow,
+.pic {
+    width: 196px;
+    height: 132px;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    transform-origin: 0 100%;
+}
+
+.pic {
+    background: url(https://pics7.baidu.com/feed/14ce36d3d539b600e1e30d1b40d8952cc75cb7f8.jpeg?token=dbb43d4851a2e9741a7d42fb90b2d897);
+    background-size: cover;
+    background-position-y: center;
+}
+
+.shadow {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+</style>
+<body>
+    <div class="book p3d">
+
+        <div class="book-cover p3d">
+            <div class="page back flip"></div>
+            <div class="page front p3d">
+                <div class="shadow"></div>
+                <div class="pic"></div>
+            </div>
+        </div>
+
+        <div class="front-cover p3d">
+            <div class="page front flip p3d">
+                
+            </div>
+
+            <div class="page back"></div>
+        </div>
+
+    </div>
+    <script>
+    // 鼠标摁住事件
+    // 鼠标移动事件
+    var hold = false
+    var page = document.querySelector('.front-cover')
+    var clamp = function (val, min, max) {
+        return Math.max(min, Math.min(val, max))
+    }
+    var pic = document.querySelector('.pic')
+    var shadow = document.querySelector('.shadow')
+
+
+
+    page.onmousedown = function () {
+        hold = true
+    }
+    window.onmouseup = function () {
+        hold = false
+    }
+
+    window.onmousemove = function (e) {  // 摁住才能执行
+        if (hold == true) {
+            console.log(e.pageX);
+            var angle = clamp((window.innerWidth / 2 - e.pageX + 300) / 300 * -90, -180, 0)
+
+            page.style.transform = `rotateY(${angle}deg)`
+
+
+            // pic 要立起来 饶x轴旋转  angle / 2
+            pic.style.transform = `rotateX(${angle / 2}deg)`
+            // shadow 要倾斜x  angle / 8
+            Shadow.style.transform = `skewX(${angle / 8}deg)`
+
+
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>

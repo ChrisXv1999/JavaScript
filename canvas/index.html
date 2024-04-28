@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts 多图表联动</title>
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="chart1" style="width: 1000px; height: 400px;"></div>
+    <div id="chart2" style="width: 1000px; height: 400px;"></div>
+
+    <script>
+        function generateData(begin = 1714028961000, step = 1000) {
+            return Array.from({ length: 12 }, (_, i) => {
+                return begin + i * step;
+            });
+        }
+        // 初始化图表
+        const chart1 = echarts.init(document.getElementById('chart1'));
+        const chart2 = echarts.init(document.getElementById('chart2'));
+        const basicOption = {
+            legend: {
+                icon: 'roundRect'
+            },
+            tooltip: {},
+            xAxis: {
+                type: 'category',
+                data: generateData(),
+                axisLabel: {
+                    formatter: function (value, index) {
+                        const date = new Date(value / 1);
+                        return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                    }
+                },
+                boundaryGap: false
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                name:'1',
+                data: [ // 这里填入你提供的时间戳数据
+                    ...generateData(10, 1)
+                ],
+                type: 'line'
+            }, {
+                name:'2',
+                data: [ // 这里填入你提供的时间戳数据
+                    ...generateData(20, 1)
+                ],
+                type: 'line'
+            }, {
+                name: '3',
+                data: [ // 这里填入你提供的时间戳数据
+                    ...generateData(30, 1)
+                ],
+                type: 'line'
+            }],
+            toolbox: {
+                show: false
+            },
+            brush: {
+                xAxisIndex: 'all',
+                throttleType: 'fixRate',
+                throttleDelay: 1000,
+                removeOnClick: false,
+                toolbox: ['lineX'],
+                brushStyle: {
+                    color: 'rgba(17,193,243,0.25)',
+                    borderColor: '#455577',
+                    borderWidth: 0
+                },
+                outOfBrush: {
+                    colorAlpha: 0.2
+                },
+                z: 10
+            },
+            animation: false
+        }
+       
+       
+        chart1.setOption(basicOption);
+        chart2.setOption(basicOption);
+
+        chart1.dispatchAction({
+            type: 'takeGlobalCursor',
+            key: 'brush',
+            brushOption: {
+                brushType: 'lineX',
+                brushMode: 'single'
+            }
+        });
+        chart2.dispatchAction({
+            type: 'takeGlobalCursor',
+            key: 'brush',
+            brushOption: {
+                brushType: 'lineX',
+                brushMode: 'single'
+            }
+        });
+        chart1.getZr().on('click', function (params) {
+            // 判断是否已经框选，如果已经框选则取消框选
+            clearBrush()
+        });
+        chart2.getZr().on('click', function (params) {
+            clearBrush()
+        });
+        function clearBrush() {
+            chart1
+            chart1.dispatchAction({
+                type: 'brush',
+                areas: []
+            });
+            chart2.dispatchAction({
+                type: 'brush',
+                areas: []
+            });
+        }
+
+
+        chart1.on('brushEnd', function ({areas=[]}) {
+            setBrushArea(chart2,areas)
+        })
+
+
+        function setBrushArea(chart, areas) {
+            chart.dispatchAction({
+                type: 'brush',
+                areas: areas
+            });
+        }
+    </script>
+</body>
+
+</html>

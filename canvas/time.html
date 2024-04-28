@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECharts Example</title>
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="chart" style="width: 800px; height: 600px;"></div>
+    <script>
+        function generateData(begin = 1714028961000,step=1000) {
+            return Array.from({length: 60}, (_, i) => {
+                return begin + i * step;
+            });
+        }
+        // 初始化 ECharts 实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            xAxis: {
+                type: 'category',
+                data: generateData(),
+                axisLabel: {
+                    formatter: function (value, index) {
+                        const date = new Date(value/1);
+                        return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [ // 这里填入你提供的时间戳数据
+                   ...generateData(100,1)
+                ],
+                type: 'line'
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    document.body.addEventListener('click',function(){
+        console.log('click')
+    })
+    document.body.addEventListener('mousemove',function(){
+        console.log('mousemove')
+    })
+    Promise.resolve().then(()=>{
+        console.log('promise');
+    })
+    document.body.dispatchEvent(new Event('mousemove'))
+
+    document.body.dispatchEvent(new Event('click'))
+    console.log('end');
+
+</script>
+</html>
