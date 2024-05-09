@@ -16,4 +16,3 @@ function numberInRange(number, min, max) {
 function integerInRange(number,min,max,strict){
     return isInteger(number,strict) && numberInRange(number,min,max);
 }
-console.log(isEven([]));
