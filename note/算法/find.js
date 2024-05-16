@@ -5,7 +5,7 @@ const d2Array = [
     [28, 29, 30, 31, 32, 33, 34, 35, 36]
 ]
 function find(matrix, target, isArrayItem) {
-    if(isArrayItem ){
+    if (isArrayItem) {
 
     }
     let low = 0, high = matrix.length - 1;
@@ -29,4 +29,14 @@ function find(matrix, target, isArrayItem) {
     return isArrayItem ? find(matrix[low], target, false) : low
 }
 
-console.log(find(d2Array, 19,true));
+console.log(find(d2Array, 19, true));
+
+var func = (function (a) {
+    this.a = a;
+    return function (a) {
+        a += this.a;
+        return a;
+    }
+})(function (a, b) {
+    return a;
+}(1, 2));

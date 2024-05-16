@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+</head>
+<style>
+    .flex {
+        position: relative;
+        display: flex;
+        width: 400px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        --border-radius: 10px;
+        --item-margin: 10px; 
+        --item-margin: 10px; 
+    }
+
+    .item {
+        height: 100px;
+        width: calc(50% - var(--item-margin));
+        overflow: hidden;
+        margin-bottom: var(--item-margin);
+    }
+
+    .title {
+        box-sizing: border-box;
+        border-radius: var(--border-radius);
+        border: 1px solid #000;
+        height: 100%;
+    }
+    .item .detail {
+        display: none;
+    }
+
+    .item:hover {
+        height: 200px;
+        margin-bottom: calc(var(--item-margin) * 2);
+    }
+
+    .item:hover .title {
+        position: relative;
+        height: calc(50% + var(--item-margin));
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        background-color: #fff;
+        border-bottom: none;
+        z-index: 9;
+    }
+
+    .item:hover .detail {
+        display: block;
+        position: absolute;
+        box-sizing: border-box;
+        border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
+        width: 100%;
+      
+        margin-top: -1px;
+        border: 1px solid #000;
+    }
+
+    .item:nth-of-type(2n) .detail {
+        border-radius: var(--border-radius) 0 var(--border-radius) var(--border-radius);
+        left: 0;
+    }
+</style>
+
+<body>
+    <div class="flex">
+        <div class="item">
+            <div class="title">1</div>
+            <div class="detail">
+                <div>123</div>
+                <div>123</div>
+                <div>123</div>
+                <div>123</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="title">1</div>
+            <div class="detail">
+                <div>123</div>
+                <div>123</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="title">1</div>
+            <div class="detail"></div>
+        </div>
+        <div class="item">
+            <div class="title">1</div>
+            <div class="detail"></div>
+        </div>
+        <div class="item">
+            <div class="title">1</div>
+            <div class="detail"></div>
+        </div>
+    </div>
+</body>
+
+</html>
