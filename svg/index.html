@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Animated Line</title>
+    <style>
+        .path-animation {
+          stroke: blue;
+          stroke-dasharray: 100%;
+          stroke-dashoffset: 100%;
+          animation: draw 2s forwards infinite;
+        }
+         
+        @keyframes draw {
+          to {
+            stroke-dashoffset: -100%;
+          }
+        }
+        </style>
+</head>
+
+<body>
+    <svg>
+        <!-- <polyline points="10,10 200,10 230,30 230" stroke-opacity="0.5" fill="none" stroke-width="2" /> -->
+        <path class="path-animation" d="M10 10 L200 10 L230 30 L230 Z" stroke="blue" stroke-opacity="0.5" fill="none" stroke-width="2" />
+    </svg>
+</body>
+
+</html>

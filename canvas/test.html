@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Red Seal from Image</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="upload" accept="image/*">
+    <canvas id="canvas"></canvas>
+    <script>
+        document.getElementById('upload').addEventListener('change', handleImage, false);
+
+        function handleImage(e) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const reader = new FileReader();
+            const img = new Image();
+
+            reader.onload = function(event) {
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    extractRedSeal(ctx, canvas.width, canvas.height);
+                    dilateRedAreas(ctx, canvas.width, canvas.height);
+                }
+                img.src = event.target.result;
+            }
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+        function extractRedSeal(ctx, width, height) {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const red = data[i];
+                const green = data[i + 1];
+                const blue = data[i + 2];
+
+                // 判断是否是红色
+                if (red > 150 && green < 100 && blue < 100) {
+                    // 保留红色部分
+                    data[i] = 255; // 确保红色饱和
+                    data[i + 1] = 0; // 绿色通道设为0
+                    data[i + 2] = 0; // 蓝色通道设为0
+                    data[i + 3] = 255; // 不透明
+                } else {
+                    // 将非红色部分设为透明
+                    data[i + 3] = 0;
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        function dilateRedAreas(ctx, width, height) {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+            const newImageData = ctx.createImageData(width, height);
+            const newData = newImageData.data;
+
+            const getIndex = (x, y) => (y * width + x) * 4;
+
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    const index = getIndex(x, y);
+
+                    if (data[index + 3] === 255) { // 如果是红色像素
+                        // 膨胀操作，将周围像素也设置为红色
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                const newX = x + dx;
+                                const newY = y + dy;
+                                if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
+                                    const newIndex = getIndex(newX, newY);
+                                    newData[newIndex] = 255;
+                                    newData[newIndex + 1] = 0;
+                                    newData[newIndex + 2] = 0;
+                                    newData[newIndex + 3] = 255;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            ctx.putImageData(newImageData, 0, 0);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .upload-file-wrapper {
+        width: 500px;
+        font-size: 12px;
+        margin: 100px auto;
+    }
+
+    .upload-file-wrapper .drop-area {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 476px;
+        height: 150px;
+        border: 1px dashed #e6e6e6;
+        border-radius: 3px;
+    }
+
+    .upload-file-wrapper .drop-area .lc-apptrace-upload {
+        font-size: 44px;
+    }
+
+    .upload-file-wrapper .drop-area label {
+        color: #0099ff;
+        cursor: pointer;
+    }
+
+    .upload-file-wrapper .drop-area input {
+        display: none;
+    }
+
+    .upload-file-wrapper .file-tip {
+        line-height: 28px;
+    }
+
+    .upload-file-wrapper .upload-file-list {
+        max-height: 100px;
+        margin-top: 8px;
+        overflow-y: scroll;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item {
+        display: flex;
+        align-items: center;
+        width: 476px;
+        height: 24px;
+        padding: 0 7px;
+        box-sizing: border-box;
+        line-height: 24px;
+        border-radius: 3px;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item i {
+        font-size: 12px;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item span {
+        padding: 0 5px;
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item .el-icon-circle-close {
+        display: none;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item .el-icon-circle-check {
+        color: #00b42a;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item .operation {
+        cursor: pointer;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item .operation:hover .el-icon-circle-close {
+        display: block;
+        color: #f00;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item .operation:hover .el-icon-circle-check {
+        display: none;
+    }
+
+    .upload-file-wrapper .upload-file-list .file-item:hover {
+        background-color: #f5f7fa;
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #999999;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #e8e8e8;
+    }
+</style>
+
+<body>
+    <div class="upload-file-wrapper">
+        <div class="drop-area">
+            <i class="lc-apptrace-upload"></i>
+            <div>
+                将文件拖入此处，或<label for="fileInput">点击上传</label>
+                <input id="fileInput" type="file" multiple style="display:none;">
+            </div>
+        </div>
+        <div class="upload-file-list">
+            <!-- 文件列表 -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const MAX_SIZE = 1024 * 1024 * 10;
+        const fileDisplayList = [];
+        document.querySelector('#fileInput').addEventListener('change', () => {
+            const fileList = [...event.target.files].map((file) => {
+                file.fullPath = file.webkitRelativePath || file.name;
+                return file;
+            });
+            updateList(fileList);
+        })
+        const dropAreaEl = document.querySelector(".drop-area");
+        dropAreaEl.addEventListener("dragenter", preventDefault);
+        dropAreaEl.addEventListener("dragover", preventDefault);
+        dropAreaEl.addEventListener("drop", preventDefault);
+        function preventDefault(event) {
+            event.preventDefault();
+        }
+        dropAreaEl.addEventListener("drop", handleDataTransfer);
+        function filterFileList(fileList, filterFn) {
+            const illFileList = [];
+            const acceptFileList = fileList.filter((file) => {
+                if (filterFn(file.name)) {
+                    return true;
+                } else {
+                    illFileList.push(file);
+                    return false;
+                }
+            });
+            return {
+                illFileList,
+                acceptFileList,
+            };
+        }
+        function updateList(list) {
+            const duplicateList = [];
+            const lagerSizeList = [];
+            list = list.filter(item => {
+                const lager = item.size > MAX_SIZE;
+                lager && lagerSizeList.push(item)
+                return !lager
+            })
+            if (list.length === 0) return;
+            fileDisplayList.push(...list);
+            updateShowList(fileDisplayList)
+        }
+        async function handleDataTransfer(e) {
+            if (e.dataTransfer && e.dataTransfer.items) {
+                const fileList = await getDropFileList([
+                    ...e.dataTransfer.items,
+                ]);
+                updateList(fileList);
+            }
+        }
+        async function getDropFileList(items) {
+            try {
+                const directoryEntry = [];
+                const entryList = items.map((item) => item.webkitGetAsEntry());
+                entryList.forEach((entry) => {
+                    directoryEntry.push(entry);
+                });
+
+                const fileEntryList = await getRollFiles(directoryEntry);
+                const fileList = await Promise.all(
+                    fileEntryList.flat(Infinity).map((fileEntry) => readFileEntry(fileEntry))
+                );
+                return fileList;
+            } catch (err) {
+                console.log(err);
+                return []
+            }
+        }
+
+        async function getRollFiles(fileEntryList) {
+            let entries = [];
+            for (let fileEntry of fileEntryList) {
+                if (fileEntry.isDirectory) {
+                    let subFileEntryList = await readDirectory(fileEntry);
+                    fileEntry = await getRollFiles(subFileEntryList);
+                }
+                entries.push(fileEntry);
+            }
+            return entries;
+        }
+        function readDirectory(directory) {
+            return new Promise((resolve, reject) => {
+                const dirReader = directory.createReader();
+                const entries = [];
+                getEntries();
+                function getEntries() {
+                    // 谷歌部分版本只会返回前100个FileSystemEntry实例 所以需要多次调用
+                    dirReader.readEntries(
+                        function (fileSystemEntryList) {
+                            if (fileSystemEntryList.length) {
+                                entries.push(...fileSystemEntryList);
+                                getEntries();
+                            } else {
+                                resolve(entries);
+                            }
+                        },
+                        function (error) {
+                            reject(error);
+                        }
+                    );
+                }
+            });
+        }
+        function readFileEntry(fileEntry) {
+            return new Promise((resolve, reject) => {
+                fileEntry.file(
+                    (fileData) => {
+                        fileData.fullPath = fileEntry.fullPath.substring(1);
+                        resolve(fileData);
+                    },
+                    (error) => {
+                        reject(error);
+                    }
+                );
+            });
+        }
+
+        function updateShowList(files) {
+            $('.upload-file-list').empty();
+            $.each(files, function (_, file) {
+                $('.upload-file-list').append('<div class="file-item">' + file.fullPath + '</div>');
+            });
+        }
+        /*
+         * 获取前n个月的日期
+         * setMonth 如果上个月没有这一天 会到这个月一号
+         * exp: 2024-3-30.setMonth(1) => 2024-3-1
+         * @param n
+         * @returns {string}
+         */
+        function getPreviousMonths(n=6){
+            const now = new Date();
+            let year = now.getFullYear();
+            let month = now.getMonth() + 1;
+            return Array.from({length:n},()=>{
+                if(month < 1){
+                    year--;
+                    month = 12;
+                }
+                month--;
+                return `${year}-${month+1}`;
+            });
+        }
+    </script>
+</body>
+
+</html>
