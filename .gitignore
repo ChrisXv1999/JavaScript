@@ -1,3 +1,5 @@
 **/node_modules
 **/dist
 /react/react-main/*
+**/package-lock.json
+ts/.DS_Store
