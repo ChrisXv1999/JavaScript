@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tetris</title>
+</head>
+<style>
+    #panel {
+        position: relative;
+        background: #000;
+        overflow: hidden;
+    }
+    #wrapper {
+        display: flex;
+    }
+    #next {
+        position: relative;
+    }
+</style>
+<body>
+    <div id="score">
+        0
+    </div>
+    <div id="wrapper">
+        <div id="panel"></div>
+        <div id="next"></div>
+    </div>
+    <button id="down">下移动</button>
+    <button id="rotate">开始</button>
+</body>
+</html>
