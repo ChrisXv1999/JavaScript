@@ -11,3 +11,12 @@
 - [ ] CLS
 - [ ] TTI
 ### Lighthouse
+
+####
+Resource Timing 2-6
+1. unloadEventStart unloadEventEnd
+2. redirectStart redirectEnd 
+3. fetchStart 
+4. domainLookupStart domainLookupEnd
+5. connectStart secureConnectionStart connectEnd
+6. requestStart  responseStar t 
