@@ -32,7 +32,7 @@ const  u = new User('chris','123456',18,'男');
 
 ### 类装饰器
 old 类装饰器的本质是一个函数 该函数接受不了一个参数 就是类本身
-new 两个参数 一个val 一个 config：Object
+new 两个参数 一个val 当前类 一个 config：Object
 可以返回一个类 替代原有类 但是不推荐
 装饰器工厂是从上到下 装饰器的执行是从下到上运行
 ts使用非空断言也报错的话可以 as any
