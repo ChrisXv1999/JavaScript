@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="query">
+    <button id="search">搜索</button>
+    <ul>
+    </ul>
+    <script>
+        const query = document.querySelector('#query');
+        const btn = document.querySelector('#search');
+        const ul = document.querySelector('ul');
+        btn.addEventListener('click',()=>{
+            fetch(`FETCH_QUERY_URL?query=${query.value.trim()}`).then(response=>{
+                response.json().then(res=>{
+                    ul.innerHTML = '';
+                    res.forEach(({key,path}) => {
+                        const oLi = document.createElement('li');
+                        oLi.innerText = `${key} \n ${path}`
+                        ul.appendChild(oLi)
+                    });
+                })
+            })
+        })
+    </script>
+</body>
+</html>

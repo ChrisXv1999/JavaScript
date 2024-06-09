@@ -1,0 +1,16 @@
+{
+  "name": "i18n-util",
+  "version": "0.0.1",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "ts-node main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^20.14.2"
+  }
+}
