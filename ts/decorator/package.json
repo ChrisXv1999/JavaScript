@@ -1,0 +1,13 @@
+{
+  "name": "decorator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch main.ts -e ts --exec ts-node main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
