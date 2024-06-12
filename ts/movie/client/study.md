@@ -202,6 +202,44 @@ function useCount(initialVal:number = 0){
         add,
         count
     }
-}
+}  
 const {count,add} = useCount(0); 
+```
+
+#### react-router
+> yarn add react-router-dom
+#### 组件
+1. Link 导航 **to** 要导航到的路径
+2. NavLink 带状态active的导航 激活样式只能有一个 通常做导航栏跳转
+```tsx
+//可以通过这种方式修改类名
+//存在问题 类不会切换
+<NavLink className={(isActive)=>isActive?'current':''}></NavLink>
+```
+3. Routes 类似于v5版本的switch 主要提供上下文环境 //最终会被转换成 useRoutes格式
+4. Route 在Route组件中书写对应的路由 
+    + **path** 匹配的路径 
+    + **element** 匹配时要渲染的组件
+5. BrowserRouter  path  |  HasRouter hash 路由工作模式 
+6. Navigate 导航  内部使用useNavigator
+    + **to** 要导航到的path  
+    + **replace** 替换
+7. Outlet 子路由显示的位置 
+
+#### Hooks
+1. useLocation
+获取location对象 可以获取state属性 可以通过navigator传递额外的数据
+2. useNavigator 可以设置state 跳转到指定路径
+3. useParams 获取动态路由的参数
+4. useRoutes  类似于vue-router 的路由配置
+```tsx
+export default function Router(){ 
+    return useRoutes([
+        {path: '/home',element: <Home></Home>},
+        {path: '/',element: <Navigate to='/home' replace></Navigate>},
+        {path: '/detail/:id', element: <Detail></Detail>},
+        {path: '/about', element: <About></About>}
+    ])
+}
+
 ```

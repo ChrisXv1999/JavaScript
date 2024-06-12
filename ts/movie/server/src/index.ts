@@ -80,9 +80,17 @@ app.route({
     method: 'get',
     handler: async (request,reply)=>{
         const params = request.params as {method:string};
-        if(params.method === 'find-name'){
+        if(params.method === 'find-list'){
             const {name='',page=1,pageSize=5} =  request.query as {name:string,page?:number,pageSize?:number}; 
             const result = await MovieService.findByName(name as string,page,pageSize);
+            reply.send(result);
+        }
+        if(params.method === 'get-detail'){
+            const {id} =  request.query as {id: string}; 
+            if(!id) {
+                return reply.send({success: false,message: 'id 不能为空'})
+            }
+            const result = await MovieService.findById(id);
             reply.send(result);
         }
     }
