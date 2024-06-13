@@ -1,0 +1,11 @@
+//增加插件 rest clint
+GET  http://localhost:9000/api?query='走走'  HTTP/1.1
+
+POST http://localhost:9000/api HTTP/1.1
+Host: localhost:9000
+Content-Type: application/json
+
+{
+    "name": "chris"
+}
+
