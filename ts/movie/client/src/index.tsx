@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+//为什么会导致打印两次
 root.render(
   <React.StrictMode>
     <App />

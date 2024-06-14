@@ -22,14 +22,28 @@ type SearchResult = {
     page: number,
     pageSize: number
 }
+const request = axios.create({
+    baseURL: '/api/',
+    timeout: 5000,
+})
+//请求拦截 
+// request.interceptors.request.use
 export class MovieService {
     public static async add(movie: IMovie) {
 
     }
     public static async getList({query = '', page = 1, pageSize = 5}:Partial<SearchCondition>):Promise<SearchResult> {
-        const response = await axios.get('/api/find-name', {
-            data: {
-                query, page, pageSize
+        const response = await request.get('find-list', {
+            params: {
+                name:query, page, pageSize
+            }
+        })
+        return response.data
+    }
+    public static async getDetail(id:string):Promise<IMovie> {
+        const response = await request.get('get-detail', {
+            params: {
+                id
             }
         })
         return response.data
