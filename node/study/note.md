@@ -156,3 +156,36 @@ SSR TOC
 4. createInflate() 解压
 5. gzip()
 6. deflate()
+#### 
+this === module.exports === exports
+模块最终导出的事module.exports
+#### net 通信模块
+http
+三次握手
+请求 
+响应
+四次挥手
+
+长连接模式
+connection keep-alive
+三次握手
+各种数据传输
+四次挥手
+
+1. 进程间的通信 ipc
+2. 网络通信tcp/ip
+
+socket 特殊的文件
+双工流 可读可写
+[例子](./src/net.js)
+
+[http](#http) 模块建立在net模块基础上
+
+#### http
+1. request 
++ url 
++ {method: [post|get]}
++ callback
+
+#### https
+https 保证数据在传输过程不被窃取和篡改
