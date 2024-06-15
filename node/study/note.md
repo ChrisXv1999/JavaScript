@@ -189,3 +189,43 @@ socket 特殊的文件
 
 #### https
 https 保证数据在传输过程不被窃取和篡改
+
+#### 生命周期 事件循环
+
+宏任务
+timer 计时器 
+poll 轮询队列  例 文件读取 http服务
+check 检查阶段 setImmediate 直接推入check队列
+微任务
+nextTick
+Promise
+// nextTick 优先级高于Promise
+```js
+setImmediate(()=>{
+    console.log(1);
+});
+
+process.nextTick(()=>{
+    console.log(2);
+    process.nextTick(()=>{
+        console.log(4);
+    })
+})
+Promise.resolve().then(()=>{
+    console.log(3);
+    process.nextTick(()=>{
+        console.log(5);
+    })
+})
+24351
+```
+#### EventEmitter
+events 模块下的类
+nodejs 事件管理的通用机制 同步执行
+内部维护多个事件队列 eventName:[fn,fn];
+实例方法
+1. on 绑定事件
+2. off 移除事件
+3. emit 触发事件
+4. once 绑定一次事件
+5. removeAllListeners 移除所有事件

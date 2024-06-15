@@ -220,3 +220,5 @@ UserSchema.static('methodName',function(){
 })
 
 ```
+
+./mongod --fork -dbpath ../data --logpath ../log/mongo.log --logappend
