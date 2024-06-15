@@ -1,12 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>express</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-    hello word
+    <div class="login-content">
+        <input type="text" id="loginId"> <br />
+        <input type="text" id="password"><br />
+        <button id="login">登陆</button>
+    </div>
+    <div class="user-detail">
+        <div class="username">
+
+        </div>
+        <div class="login-id" data-visible="0">
+            XXXX
+        </div>
+        <div class="hobbies">
+
+        </div>
+        <div class="address"></div>
+        <button class="logout">logout</button>
+
+    </div>
 </body>
+<script>
+    const loginBtn = document.getElementById('login');
+    const loginId = document.getElementById('loginId');
+    const password = document.getElementById('password');
+    loginBtn.addEventListener('click', () => {
+
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+        });
+        fetch('http://localhost:6001/admin/login', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+                loginId: loginId.value,
+                password: password.value
+            })
+        }).then(response => {
+            return response.json()
+        }).then(res => {
+            if (res.msg) {
+                alert(res.msg);
+                return
+            }
+
+            displayUserDetail()
+        })
+    })
+    function displayUserDetail() {
+        document.querySelector('.login-content').style.display = 'none';
+        document.querySelector('.user-detail').style.display = 'block';
+        fetch('http://localhost:6001/admin/whoisi').then(response => {
+            return response.json()
+        }).then(res => {
+            document.querySelector('.username').textContent = res.data.username;
+            document.querySelector('.hobbies').textContent = res.data.hobbies;
+            document.querySelector('.address').textContent = `${res.data.address.province}省 ${res.data.address.city}市`;
+        })
+    }
+
+    document.querySelector('.logout').addEventListener('click', () => {
+        // document.querySelector('.login-content').style.display = 'block';
+        // document.querySelector('.user-detail').style.display = 'none';
+        fetch('http://localhost:6001/admin/logout').then(response => {
+            return response.json()
+        }).then(res => {
+            alert(res.data)
+        })
+    })
+    document.querySelector('.login-id').addEventListener('click', (e) => {
+        if (e.target.dataset.visible === '0') {
+            e.target.dataset.visible = '1';
+            fetch('http://localhost:6001/admin/whoisi').then(response => {
+                return response.json()
+            }).then(res => {
+                if(res.msg){
+                    return alert(res.msg)
+                }
+                document.querySelector('.login-id').textContent = res.data.loginId;
+            })
+        }else {
+            e.target.dataset.visible = '0';
+            document.querySelector('.login-id').textContent = 'XXXX';
+        }
+    })
+</script>
+
 </html>

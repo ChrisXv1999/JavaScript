@@ -5,8 +5,11 @@ function getUserList(){
 function getUserById(id){
     return User.findById(id);
 }
-
+function findUserByLoginId(loginId,option={}){
+    return User.find({loginId},option)
+}
 module.exports = {
     getUserList,
-    getUserById
+    getUserById,
+    findUserByLoginId
 }

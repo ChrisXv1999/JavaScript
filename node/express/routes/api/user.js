@@ -6,8 +6,9 @@ userRoute.get('/',async (request,response)=>{
     const result = await UserService.getUserList();
     response.send(getResult(result))
 }) 
-userRoute.get('/:id',(request,response)=>{
-    response.send(getResult('list'))
+userRoute.get('/:id',async (request,response)=>{
+    const result = await UserService.getUserById(request.params.id);
+    response.send(getResult(result))
 })
 userRoute.post('/',(request,response)=>{
     response.send(getResult('list'))
