@@ -1,3 +1,61 @@
+### node组成
+1. 用户代码  第三方库 大部分仍然是js代码
+2. 内置模块 native modules  例如 fs path http net 也是使用js编写
+3. 内置模块代码  扩展v8引擎 增强 提供给内置模块使用
+4. v8引擎  编译用户代码 交付给硬件执行
+5. libuv c++ c  
+6. osapi
+7. 硬件 
+### 进程
+一个应用程序 操作系统就会给起分配一个进程
+一个进程拥有独立的可伸缩的内存空间 原则上不受其他进程干扰
+进程之间可以通信 只要两个进程双方遵守一定的协议 比如ipc
+CPU在不同的进程之间切换执行
+操作系统开启的进程为主进程
+```js
+//开启子进程
+const childProcess = require('child_process');
+childProcess.exec('命令',()=>{
+
+})
+```
+### 线程
+程序一定是在线程上运行 
+进程启动会自动分配一个进程 这个进程为主进程
+线程和进程很相似
+最大的区别是线程的内存空间没有隔离
+使用线程的主要目的是为了充分使用多核cpu
+最好不要在线程内阻塞 io操作 文件读取 数据库操作
+最理想的线程
+1. 线程数等于cpu的核数
+2. 线程永不阻塞
+    + 没有io
+    + 只存在大量运算
+3. 线程相互独立 几乎不共享数据
+线程一般处理cpu密集型操作 
+```js
+const {Worker}  =require('worker_threads')
+```
+### websocket
+ 一个特殊的http请求 没有请求体 get请求
+ header里面 存在 connection upgrade   ｜ upgrade websocket
+ ```js
+ //客户端
+ new WebSocket() 
+ //请求头中有一个 sec-websocket-key
+ //服务端
+//  对传入的值进行hash加密 并进行base64编码
+const crypto = require('crypto');
+const hash = crypto.createHash('sha1');
+hash.update(header['Sec-webSocket-Key'] + 'uuid');
+const key = hash.digest("base64")
+socket.write(`HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: ${key}
+
+`)
+ ```
 ### 导入导出
 #### commonjs
 导入 require
