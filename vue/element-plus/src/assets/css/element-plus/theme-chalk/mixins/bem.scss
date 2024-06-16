@@ -1,0 +1,50 @@
+@import '../var/bem.scss';
+
+@mixin b($block) {
+  $b : $namespace + $block-separator + $block;
+
+  @at-root {
+    .#{$b} {
+      @content
+    }
+  }
+}
+
+;
+
+@mixin m($modifier) {
+  $selector : &;
+  $m : $selector + $modifier-separator + $modifier;
+
+  @at-root {
+    .#{$m} {
+      @content
+    }
+  }
+}
+
+;
+
+@mixin e($element) {
+  $selector : &;
+  $e : $selector + $element-separator + $element;
+
+  @at-root {
+    .#{$e} {
+      @content
+    }
+  }
+}
+
+;
+
+@mixin state($state) {
+  $selector : &;
+  $e : $selector + '.' + $state-prefix + '-' + $state;
+
+  @at-root {
+    #{$e} {
+      @content
+    }
+  }
+}

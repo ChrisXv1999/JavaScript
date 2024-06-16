@@ -1,0 +1,23 @@
+@use './el-row.scss';
+@use './el-col.scss';
+* {
+    padding: 0;
+    margin: 0;
+}
+.row-bg {
+    --ep-c-bg-row: #f9fafc;
+    --ep-c-bg-purple: #d3dce6;
+    --ep-c-bg-purple-dark: #99a9bf;
+    --ep-c-bg-purple-light: #e5e9f2;
+    background-color: var(--ep-c-bg-row);
+    .ep-bg-purple {
+        background: var(--ep-c-bg-purple);
+    }
+    .ep-bg-purple-light {
+        background: var(--ep-c-bg-purple-light);
+    }
+    .grid-content {
+        min-height: 50px;
+        margin-bottom: 10px;
+    }
+}

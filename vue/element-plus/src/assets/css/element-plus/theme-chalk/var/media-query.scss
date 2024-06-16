@@ -1,0 +1,27 @@
+$xs: (
+    0,
+    767px
+);
+$sm: (
+    768px,
+    991px
+);
+$md: (
+    992px,
+    1199px
+);
+$lg: (
+    1200px,
+    1919px
+);
+$xl: (
+    1920px,
+    9999px
+);
+$mediaMap: (
+    xs: '(min-width: #{nth($xs, 1)}) and (max-width: #{nth($xs, 2)})',
+    sm: '(min-width: #{nth($sm, 1)}) and (max-width: #{nth($sm, 2)})',
+    md: '(min-width: #{nth($md, 1)}) and (max-width: #{nth($md, 2)})',
+    lg: '(min-width: #{nth($lg, 1)}) and (max-width: #{nth($lg, 2)})',
+    xl: '(min-width: #{nth($xl, 1)}) and (max-width: #{nth($xl, 2)})'
+)

@@ -1,0 +1,32 @@
+@import'./theme-chalk/mixins/bem.scss';
+
+@include b(row) {
+    display: flex;
+    flex-wrap: wrap;
+    $justifyList: (
+        start,
+        end,
+        center,
+        space-around,
+        space-between,
+        space-evenly
+    );
+
+@each $state in $justifyList {
+    @include state(justify- + $state) {
+        justify-content: $state;
+    }
+}
+
+$alginMap: (
+    "start": start,
+    "middle": center,
+    "end": end
+);
+
+@each $state in map-keys($alginMap) {
+    @include state(algin- + $state) {
+        align-items: map-get($alginMap, $state);
+    }
+}
+}

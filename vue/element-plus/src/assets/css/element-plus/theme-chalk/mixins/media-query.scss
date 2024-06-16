@@ -1,0 +1,14 @@
+@import '../var/media-query.scss';
+
+@mixin mediaQuery($size, $map: $mediaMap) {
+    @if map-has-key($map, $size) {
+        @media #{map-get($map, $size)} {
+            @content;
+        }
+    }
+    @else {
+        @error '#{$size} not defined'
+    }
+}
+
+;

@@ -1,0 +1,38 @@
+@use 'sass:math';
+@import'./theme-chalk/mixins/bem.scss';
+@import'./theme-chalk/mixins/media-query.scss';
+
+@include b(col) {
+    flex: 1;
+    box-sizing: border-box;
+
+    @for $idx from 1 through 24 {
+        &-#{$idx} {
+            max-width: math.div($idx, 24) * 100%;
+        }
+
+        &-offset-#{$idx} {
+            margin-left: math.div($idx, 24) * 100%;
+        }
+
+        &-push-#{$idx} {
+            position: relative;
+            right: math.div($idx, 24) * 100%;
+        }
+
+        &-pull-#{$idx} {
+            position: relative;
+            left: math.div($idx, 24) * 100%;
+        }
+    }
+    @each $size in map-keys($mediaMap) {
+        @include mediaQuery($size){
+            @for $idx from 1 through 24 {
+                &-#{$size}-#{$idx} {
+                    max-width: math.div($idx, 24) * 100%;
+                }
+            }
+         };
+    }
+
+};
