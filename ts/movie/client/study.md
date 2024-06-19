@@ -1,3 +1,21 @@
+#### jsx
+facebook起草的标准 对js的扩展
+有且仅有一个根结点
+最终会被编译为React.createElement(tag,{},children)
+<></> React.Fragment
+
+null undefined true false '' [] 等值不会显示
+ {[1,jsx,undefined,null,[],true,123]}
+
+ 设置富文本 dangerouslySetInnerHTML
+ ```js
+ <div dangerouslySetInnerHTML = {
+    {__html: htmlStr}
+}></div>
+
+// react元素不可变 如果需要修改属性 需要重新创建
+ ```
+ 图片必须导入
 #### 组件
 
 早期函数组件是无状态组件
@@ -32,7 +50,9 @@ class App extends React.Component {
 ```
 #### setState 
 setState在事件里会是一个异步函数
+低版本只有事件中的是异步 
 高版本的react 计时器里面的setState也会是异步的
+回调函数运行于render函数之后
 1. 把所有的setSate当作异步
 2. 永远不要信任setState调用后的状态
 3. 如果要使用改变之后的状态 使用setState第二个参数 callback
@@ -160,6 +180,39 @@ return 一段jsx
 prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: any
 // snapshot 快照  getSnapshotBeforeUpdate 的返回值
 ```
+#### forwardRef
+解决高阶组件ref 指向包装组件的问题
+ref转发 
+```jsx
+// 当作props的属性传递也可以
+// 或者用函数包装一层
+const forwardRef(Com) = React.forwardRef(Com);
+
+function Com(props,ref){
+    return <>
+        <input />
+    </>
+}
+```
+
+#### context
+老版 父组件  getChildContext
+    子组件  contextTypes
+新版 provider  consumer = createContext
+    class中需要有静态属性 contentType
+    函数组件 使用 consumer
+    provider 提供的上下文改变 provider包裹的内部的组件无论是否进行优化（shouldComponentUpdate  都不会运行） 都会强制重新渲染
+```jsx
+    <ctx.Consumer>
+        {
+            val=>{
+
+            }
+        }
+    </ctx.Consumer>
+```
+
+####
 #### Hooks
 16.8新增特性 不编写class的情况下使用state以及react特性
 本质是javascript函数
