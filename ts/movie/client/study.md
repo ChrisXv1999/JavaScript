@@ -212,7 +212,58 @@ function Com(props,ref){
     </ctx.Consumer>
 ```
 
-####
+#### pureComponent
+纯组件 会进行props state浅比较
+类似于shouldComponentUpdate
+immutable 不可变性
+函数组件 使用react.memo
+#### Portals
+插槽 将一个react渲染到指定的容器内 类似于vue的 teleport
+ReactDom.createPortal(react元素,真实dom容器) 
+返回一个react元素
+只影响dom渲染结构 不影响react结构
+
+**注意事件冒泡**
+react中的事件是被包装过的
+冒泡是根据虚拟的dom树结构冒泡的 跟真实的结构无关
+
+#### render props
+横切关注点 数据处理逻辑几乎一致
+属性名称建议使用render
+也可以使用children
+clientX clientY 相对于视口的距离
+pageX pageY 相对于文档顶部
+#### 错误边界
+默认情况下 若一个组件渲染区间发生错误 会导致整个组件被全部卸载
+错误边界 是一个组件 该组件会捕获到**渲染期间（render）**的错误  
+1. getDerivedStateFromError
+```tsx
+static getDerivedStateFromError 
+
+/**
+ * 静态函数
+ * 运行时间 发生错误之后 页面更新之前
+ * 只有子组件发生错误
+ * 捕获错误之前的组件依然会被销毁
+ * @params
+ * error 错误对象
+ * @returns
+ *  {
+ *  hasError:Boolean
+ *  }
+ */
+```
+2. componentDidCatch
+实例方法
+组件更新之后
+参数一 错误对象 
+参数二 object 错误摘要 发生在哪里 
+影响效率 由于运行时间靠后 因此不推荐
+通常用于错误上报
+
+**异步错误无法捕获**
+**自身错误无法捕获**
+**事件中的错误无法捕获**
 #### Hooks
 16.8新增特性 不编写class的情况下使用state以及react特性
 本质是javascript函数
