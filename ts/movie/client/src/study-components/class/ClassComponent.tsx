@@ -1,5 +1,6 @@
 import React from "react";
 import Count from './count';
+import { GlobalContext,GlobalContextType } from "../../context/global";
  type OptionItem = {
     label: string,
     value?: string,
@@ -13,6 +14,7 @@ import Count from './count';
   }
   let num = 0;
 export default class ClassComponent extends React.Component {
+    static contextType = GlobalContext;
     constructor(props:object){
       super(props);  
       console.log('app init',++num); 
@@ -100,6 +102,7 @@ export default class ClassComponent extends React.Component {
       
       return (
         <div onClick={() => this.clickHandel()}>
+          {(this.context as GlobalContextType).version}
           <Count count={this.state.count}></Count>
           <input value={this.state.addNumber} onChange={this.changeAddNumber} />
           <button onClick={this.add}>add</button>
