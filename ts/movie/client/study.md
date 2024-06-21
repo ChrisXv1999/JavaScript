@@ -1,3 +1,21 @@
+#### jsx
+facebook起草的标准 对js的扩展
+有且仅有一个根结点
+最终会被编译为React.createElement(tag,{},children)
+<></> React.Fragment
+
+null undefined true false '' [] 等值不会显示
+ {[1,jsx,undefined,null,[],true,123]}
+
+ 设置富文本 dangerouslySetInnerHTML
+ ```js
+ <div dangerouslySetInnerHTML = {
+    {__html: htmlStr}
+}></div>
+
+// react元素不可变 如果需要修改属性 需要重新创建
+ ```
+ 图片必须导入
 #### 组件
 
 早期函数组件是无状态组件
@@ -32,7 +50,9 @@ class App extends React.Component {
 ```
 #### setState 
 setState在事件里会是一个异步函数
+低版本只有事件中的是异步 
 高版本的react 计时器里面的setState也会是异步的
+回调函数运行于render函数之后
 1. 把所有的setSate当作异步
 2. 永远不要信任setState调用后的状态
 3. 如果要使用改变之后的状态 使用setState第二个参数 callback
@@ -160,6 +180,90 @@ return 一段jsx
 prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: any
 // snapshot 快照  getSnapshotBeforeUpdate 的返回值
 ```
+#### forwardRef
+解决高阶组件ref 指向包装组件的问题
+ref转发 
+```jsx
+// 当作props的属性传递也可以
+// 或者用函数包装一层
+const forwardRef(Com) = React.forwardRef(Com);
+
+function Com(props,ref){
+    return <>
+        <input />
+    </>
+}
+```
+
+#### context
+老版 父组件  getChildContext
+    子组件  contextTypes
+新版 provider  consumer = createContext
+    class中需要有静态属性 contentType
+    函数组件 使用 consumer
+    provider 提供的上下文改变 provider包裹的内部的组件无论是否进行优化（shouldComponentUpdate  都不会运行） 都会强制重新渲染
+```jsx
+    <ctx.Consumer>
+        {
+            val=>{
+
+            }
+        }
+    </ctx.Consumer>
+```
+
+#### pureComponent
+纯组件 会进行props state浅比较
+类似于shouldComponentUpdate
+immutable 不可变性
+函数组件 使用react.memo
+#### Portals
+插槽 将一个react渲染到指定的容器内 类似于vue的 teleport
+ReactDom.createPortal(react元素,真实dom容器) 
+返回一个react元素
+只影响dom渲染结构 不影响react结构
+
+**注意事件冒泡**
+react中的事件是被包装过的
+冒泡是根据虚拟的dom树结构冒泡的 跟真实的结构无关
+
+#### render props
+横切关注点 数据处理逻辑几乎一致
+属性名称建议使用render
+也可以使用children
+clientX clientY 相对于视口的距离
+pageX pageY 相对于文档顶部
+#### 错误边界
+默认情况下 若一个组件渲染区间发生错误 会导致整个组件被全部卸载
+错误边界 是一个组件 该组件会捕获到**渲染期间（render）**的错误  
+1. getDerivedStateFromError
+```tsx
+static getDerivedStateFromError 
+
+/**
+ * 静态函数
+ * 运行时间 发生错误之后 页面更新之前
+ * 只有子组件发生错误
+ * 捕获错误之前的组件依然会被销毁
+ * @params
+ * error 错误对象
+ * @returns
+ *  {
+ *  hasError:Boolean
+ *  }
+ */
+```
+2. componentDidCatch
+实例方法
+组件更新之后
+参数一 错误对象 
+参数二 object 错误摘要 发生在哪里 
+影响效率 由于运行时间靠后 因此不推荐
+通常用于错误上报
+
+**异步错误无法捕获**
+**自身错误无法捕获**
+**事件中的错误无法捕获**
 #### Hooks
 16.8新增特性 不编写class的情况下使用state以及react特性
 本质是javascript函数
