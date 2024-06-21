@@ -1,0 +1,44 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "loginId": "admin",
+            "username": "admin",
+            "password": "123456",
+            "operation": "admin"
+        },
+        {
+            "id": 2,
+            "loginId": "user",
+            "username": "user",
+            "password": "123456",
+            "operation": "user"
+        }
+    ],
+    "order": [
+        {
+            "id": 1,
+            "username": "admin",
+            "orderTimeStamp": 1718961811941,
+            "goodsId": 1,
+            "goodsName": "goods1",
+            "goodsPrice": 1
+        }
+    ],
+    "good": [
+        {
+            "id": 1,
+            "goodsName": "goods1",
+            "goodsPrice": 1
+        }
+    ],
+    "goodDetail": [
+        {
+            "id": 1,
+            "goodsId": 1,
+            "goodsName": "goods1",
+            "goodsPrice": 1,
+            "goodsDetail": "goods1"
+        }
+    ]
+}
