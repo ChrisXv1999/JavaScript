@@ -1,0 +1,386 @@
+{
+  "config": {
+    "id": "1",
+    "systemName": "在线商城"
+  },
+  "user": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123456",
+      "operation": "admin",
+      "createTime": 1718961810941,
+      "enabled": true
+    },
+    {
+      "id": "2",
+      "username": "chris",
+      "password": "123456",
+      "operation": "user",
+      "goods": [
+        "4",
+        "5"
+      ],
+      "createTime": 1718961810941,
+      "enabled": true
+    },
+    {
+      "id": "0ea5",
+      "username": "chris1",
+      "password": "123456",
+      "operation": "user",
+      "createTime": 1719119986397,
+      "enabled": true
+    }
+  ],
+  "order": [
+    {
+      "id": "1",
+      "username": "chris",
+      "orderTimeStamp": 1718961811941,
+      "goodsName": "Redmi Turbo 3",
+      "goodsPrice": 4699,
+      "status": true,
+      "deliveryTimeStamp": 1718989688944,
+      "href": "https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202403201526_60b548a0614d956b2d3667a63d513539.png?thumb=1&w=400&h=400&f=webp&q=90"
+    },
+    {
+      "id": "a9e8",
+      "goodsPrice": 2499,
+      "goodsName": "vivo S19 ",
+      "href": "https://shopstatic.vivo.com.cn/vivoshop/commodity/46/10009746_1716367241954_750x750.png.webp",
+      "orderTimeStamp": 1719056766318,
+      "status": false,
+      "username": "chris"
+    },
+    {
+      "id": "3085",
+      "goodsPrice": 6999,
+      "goodsName": "iPhone 15 Pro Max",
+      "href": "https://gw.alicdn.com/imgextra/i3/1903564081/O1CN01OsTvM01g19IUaxcPQ_!!1903564081.png_.webp",
+      "orderTimeStamp": 1719057638066,
+      "status": false,
+      "username": "chris"
+    },
+    {
+      "id": "3b57",
+      "goodsPrice": 2999,
+      "goodsName": "Xiaomi Civi 4 Pro",
+      "href": "https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202403201526_60b548a0614d956b2d3667a63d513539.png?thumb=1&w=400&h=400&f=webp&q=90",
+      "orderTimeStamp": 1719118976642,
+      "status": true,
+      "username": "chris",
+      "deliveryTimeStamp": 1719119102744
+    },
+    {
+      "id": "a8e8",
+      "goodsPrice": 6999,
+      "goodsName": "Galaxy S24 Ultra",
+      "href": "https://images.samsung.com.cn/is/image/samsung/assets/cn/buy/galaxy-s24-ultra/Titanium_Gray_PC.png?imwidth=480",
+      "orderTimeStamp": 1719119446510,
+      "status": true,
+      "username": "lqllql",
+      "deliveryTimeStamp": 1719119480018
+    }
+  ],
+  "goods": [
+    {
+      "id": "1",
+      "goodsName": "Redmi Turbo 3",
+      "goodsPrice": 1999,
+      "online": true,
+      "isHot": true,
+      "tagId": "1",
+      "discount": 88,
+      "onlineTimeStamp": 1718373002305,
+      "describe": "性能旋风 席卷而来",
+      "onlineTimeStampLabel": "2024-06-14T13:50:02.305Z",
+      "href": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/adde6bae41441887017824f46cf31602.png?thumb=1&w=400&h=400&f=webp&q=90"
+    },
+    {
+      "goodsName": "Xiaomi Civi 4 Pro",
+      "goodsPrice": 2999,
+      "online": true,
+      "isHot": true,
+      "tagId": "1",
+      "discount": 100,
+      "onlineTimeStamp": 1718694240000,
+      "describe": "徕卡光学Summilux镜头 | 5000万徕卡人像镜头",
+      "onlineTimeStampLabel": "2024-06-18T07:04:00.000Z",
+      "href": "https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202403201526_60b548a0614d956b2d3667a63d513539.png?thumb=1&w=400&h=400&f=webp&q=90",
+      "id": "3696"
+    },
+    {
+      "id": "97f8",
+      "goodsName": "Galaxy S24 Ultra",
+      "goodsPrice": 6999,
+      "online": true,
+      "tagId": "2",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "Galaxy S24 Ultra 给你不一样的体验",
+      "href": "https://images.samsung.com.cn/is/image/samsung/assets/cn/buy/galaxy-s24-ultra/Titanium_Gray_PC.png?imwidth=480",
+      "isHot": true
+    },
+    {
+      "id": "a19a",
+      "goodsName": "华为/HUAWEI Mate 60 Pro",
+      "goodsPrice": 6999,
+      "online": true,
+      "tagId": "d6e8",
+      "discount": 100,
+      "onlineTimeStamp": 1683774000000,
+      "onlineTimeStampLabel": "2023-05-11T03:00:00.000Z",
+      "describe": "华为/HUAWEI Mate 60 Pro 智能手机新品",
+      "href": "https://gw.alicdn.com/imgextra/i1/2838892713/O1CN01iKwL8D1VubU6poeXz_!!0-item_pic.jpg_Q75.jpg_.webp"
+    },
+    {
+      "id": "e2c5",
+      "goodsName": "HUAWEI MatePad Air ",
+      "goodsPrice": 2699,
+      "online": true,
+      "tagId": "d6e8",
+      "discount": 100,
+      "onlineTimeStamp": 1717488300000,
+      "onlineTimeStampLabel": "2024-06-04T08:05:00.000Z",
+      "describe": "HUAWEI MatePad Air 2023款华为平板电脑新品华为平板air全面屏144Hz高刷大学生看剧绘画官方旗舰店",
+      "href": "https://gw.alicdn.com/imgextra/i2/2838892713/O1CN01ssmppN1VubUZGm8Lj_!!0-item_pic.jpg_Q75.jpg_.webp"
+    },
+    {
+      "goodsName": "华为MateBook 14 ",
+      "goodsPrice": 5699,
+      "online": true,
+      "tagId": "d6e8",
+      "discount": 100,
+      "onlineTimeStamp": 1717567440000,
+      "onlineTimeStampLabel": "2024-06-05T06:04:00.000Z",
+      "describe": "华为MateBook 14 笔记本电脑2K触控全面屏13代英特尔酷睿16GB+512GB显卡学生轻薄办公",
+      "href": "https://res2.vmallres.com/pimages/uomcdn/CN/pms/202405/gbom/6942103124914/428_428_7D7D2A40B13DD15850BDCE0FC71E3BB5mp.png",
+      "isHot": false,
+      "id": "1c25"
+    },
+    {
+      "goodsName": "HUAWEI/华为 nova12Pro",
+      "goodsPrice": 3999,
+      "online": true,
+      "tagId": "d6e8",
+      "discount": 80,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "HUAWEI/华为 nova12Pro 手机官方旗舰店正品官网学生老人鸿蒙智能手机 nova1212Pro",
+      "href": "https://res2.vmallres.com/pimages/uomcdn/CN/pms/202406/displayProduct/10086589205655/428_428_b_webC6FD5EDCEF65C0AB9A2824D7CCC9F2B1.png",
+      "isHot": false,
+      "id": "5207"
+    },
+    {
+      "goodsName": "华为mate50",
+      "goodsPrice": 4999,
+      "online": true,
+      "tagId": "d6e8",
+      "discount": 50,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "华为mate50 16+512GB新款5G曲面屏智能游戏新品华为手机官方旗舰店官网正品X50/mate50pro",
+      "href": "https://gw.alicdn.com/imgextra/i4/2217383800589/O1CN013KjWS41GDoDzWQBwP_!!2217383800589.jpg_Q75.jpg_.webp",
+      "id": "2c4b",
+      "isHot": true
+    },
+    {
+      "goodsName": "华为MateBook D16/16S ",
+      "goodsPrice": 3698,
+      "online": true,
+      "tagId": "d6e8",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "华为MateBook D16/16S 2024新款华为笔记本电脑13代酷睿手提轻薄本官方旗舰店官网正品华为电脑",
+      "href": "https://res2.vmallres.com/pimages/uomcdn/CN/pms/202403/gbom/6942103117480/428_428_3B943B45EB5100A5B792D5E1F9FD6576mp.png",
+      "id": "62e5",
+      "isHot": false
+    },
+    {
+      "goodsName": "Xiaomi 14 Ultra",
+      "goodsPrice": 5708,
+      "online": true,
+      "tagId": "1",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "MIUI/小米 Xiaomi 14 Ultra 新款上市 徕卡影像澎湃高通骁龙8Gen3",
+      "href": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1708570856.03118739.png",
+      "id": "df99"
+    },
+    {
+      "id": "4f37",
+      "goodsName": "vivo S19 ",
+      "goodsPrice": 2499,
+      "online": true,
+      "tagId": "5b17",
+      "discount": 10,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "焕然一新 美出东方",
+      "href": "https://shopstatic.vivo.com.cn/vivoshop/commodity/46/10009746_1716367241954_750x750.png.webp"
+    },
+    {
+      "id": "b2fb",
+      "goodsName": "vivo X100 Ultra",
+      "goodsPrice": 7299,
+      "online": true,
+      "tagId": "5b17",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "日环云阶 浑然天成",
+      "href": "https://shopstatic.vivo.com.cn/vivoshop/commodity/52/10009652_1715159186170_750x750.png.webp"
+    },
+    {
+      "id": "cf10",
+      "goodsName": "vivo S18 Pro",
+      "goodsPrice": 3699,
+      "online": true,
+      "tagId": "5b17",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "东方灵韵 锦上花开",
+      "href": "https://shopstatic.vivo.com.cn/vivoshop/commodity/26/10009226_1702028243746_750x750.png.webp"
+    },
+    {
+      "goodsName": "vivo WATCH",
+      "goodsPrice": 799,
+      "online": true,
+      "tagId": "5b17",
+      "discount": 100,
+      "onlineTimeStamp": 1715065200000,
+      "onlineTimeStampLabel": "2024-05-07T07:00:00.000Z",
+      "describe": "记录运动 就用vivo运动手表",
+      "href": "https://shopstatic.vivo.com.cn/vivoshop/commodity/66/10009766_1716795441732_750x750.png.webp",
+      "id": "a4f2"
+    },
+    {
+      "goodsName": "vivo X100s Pro ",
+      "goodsPrice": 5599,
+      "online": true,
+      "tagId": "5b17",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "日环云阶 浑然天成",
+      "href": "https://shopstatic.vivo.com.cn/vivoshop/commodity/51/10009651_1715153312929_750x750.png.webp",
+      "id": "22b6",
+      "isHot": false
+    },
+    {
+      "id": "b1b5",
+      "goodsName": "  Galaxy S24",
+      "goodsPrice": 9999,
+      "online": true,
+      "tagId": "2",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "Galaxy S24 一个会爆炸的手机",
+      "href": "https://images.samsung.com.cn/is/image/samsung/assets/cn/buy/galaxy-s24/S24_Cobalt_Violet_MO.png?imwidth=480"
+    },
+    {
+      "id": "cccd",
+      "goodsName": "Xiaomi Civi 3",
+      "goodsPrice": 2299,
+      "online": true,
+      "tagId": "1",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "双生双色设计 | 前置仿生双主摄 | 原生质感人像 | 超轻薄好手感 | 天玑8200-Ultra高性能处理器 | 4500mAh大电池",
+      "href": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1684926182.14498031.png",
+      "isHot": false
+    },
+    {
+      "id": "d2ad",
+      "goodsName": "Redmi K70E",
+      "goodsPrice": 1799,
+      "online": true,
+      "tagId": "1",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "天玑 8300-Ultra｜小米澎湃OS｜狂暴引擎3.0｜豪华散热系统｜1.5K 旗舰直屏｜5500mAh 超长续航",
+      "href": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1701682280.67146844.png"
+    },
+    {
+      "goodsName": "苹果15 Pro",
+      "goodsPrice": 8888,
+      "online": true,
+      "tagId": "78f8",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "Apple/苹果 iPhone 15 Pro Max 5G手机官方旗舰国行直降新款15promax官网正品iphone手机",
+      "href": "https://gw.alicdn.com/imgextra/i4/2308064254/O1CN015Ingcc1hINosCieTP_!!2308064254.jpg_Q75.jpg_.webp",
+      "id": "02eb",
+      "isHot": false
+    },
+    {
+      "id": "6676",
+      "goodsName": "iPhone 15 Pro Max",
+      "goodsPrice": 6999,
+      "online": true,
+      "tagId": "78f8",
+      "discount": 100,
+      "onlineTimeStamp": 1718679600000,
+      "onlineTimeStampLabel": "2024-06-18T03:00:00.000Z",
+      "describe": "Apple/苹果 iPhone 15 Pro Max国行双卡新款15promax官方正品手机",
+      "href": "https://gw.alicdn.com/imgextra/i3/1903564081/O1CN01OsTvM01g19IUaxcPQ_!!1903564081.png_.webp"
+    }
+  ],
+  "tag": [
+    {
+      "id": "1",
+      "label": "小米"
+    },
+    {
+      "id": "2",
+      "label": "三星"
+    },
+    {
+      "id": "d6e8",
+      "label": "华为"
+    },
+    {
+      "id": "5b17",
+      "label": "vivo"
+    },
+    {
+      "id": "78f8",
+      "label": "苹果"
+    },
+    {
+      "id": "8acf",
+      "label": "111"
+    }
+  ],
+  "carousel": [
+    {
+      "id": "1",
+      "href": "https://www.apple.com.cn/iphone-15-pro/images/overview/welcome/hero_endframe__ov6ewwmbhiqq_large_2x.jpg"
+    },
+    {
+      "id": "2",
+      "href": "https://img.youpin.mi-img.com/ferriswheel/aaa74040_6060_4b71_bf54_4eed1dc22876.jpeg@base@tag=imgScale&F=webp&h=1080&q=90&w=2560"
+    },
+    {
+      "id": "3",
+      "href": "https://images.samsung.com.cn/is/image/samsung/assets/cn/buy/galaxy-s24-ultra/Pre-order_KV_PC.jpg?imbypass=true"
+    },
+    {
+      "id": "4",
+      "href": "https://zhanstatic.vivo.com.cn/wukong-zhan/img/e7844313-dca1-42c3-b2f9-3090692a99e7.jpg.webp"
+    },
+    {
+      "id": "5",
+      "href": "https://images.samsung.com.cn/is/image/samsung/assets/cn/buy/galaxy-s24-ultra/S24_Ultra_GroupKV_PC.jpg?imbypass=true"
+    }
+  ]
+}
