@@ -42,6 +42,20 @@ ts使用非空断言也报错的话可以 as any
  1. 静态属性 类本身  实例属性 则为类的原型
  2. 字符串 属性名
  new
+ ```ts
+//  value undefined  context ClassFieldDecorator 
+ function logged(value, context) {
+  const { kind, name } = context;
+  if (kind === 'field') {
+    return function (initialValue) {
+      console.log(`initializing ${name} with value ${initialValue}`);
+      return initialValue;
+    };
+  }
+}
+
+// 属性装饰器返回值必须是函数
+ ```
 - 方法
 类的方法是不可枚举的 且不能作为构造函数
 函数在javascript中是一等公民
@@ -52,3 +66,15 @@ old 方法装饰器也是一个函数 该函数需要三个参数
 new 两个参数 
 1. 方法本身
 2. 配置对象
+```ts
+ {
+  kind: 'method',
+  name: 'say',
+  static: false,
+  private: false,
+  access: { has: [Function: has], get: [Function: get] },
+  metadata: undefined,
+  //函数，用来添加类的初始化逻辑。以前，这些逻辑通常放在构造函数里面，对方法进行初始化，现在改成以函数形式传入addInitializer()方法。注意，addInitializer()没有返回值。
+  addInitializer: [Function (anonymous)]
+}
+```

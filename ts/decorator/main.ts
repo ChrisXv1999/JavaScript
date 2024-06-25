@@ -1,15 +1,15 @@
 @countInstances()
 // @forbiddenInstantiate()
-class User{
-    constructor(public name:string){
-       
+class User {
+    constructor(public name: string) {
+
     }
 }
 
-function forbiddenInstantiate<T>(){
-    return function(value:new (...arg:any[])=>object,context:ClassDecoratorContext){
-        return class extends value{
-            constructor(...arg:any[]){
+function forbiddenInstantiate<T>() {
+    return function (value: new (...arg: any[]) => object, context: ClassDecoratorContext) {
+        return class extends value {
+            constructor(...arg: any[]) {
                 console.log(new.target);
                 throw new TypeError('This class can’t be new-invoked');
                 super(...arg);
@@ -17,12 +17,12 @@ function forbiddenInstantiate<T>(){
         } as T
     }
 }
-function countInstances<T>(){
+function countInstances<T>() {
     let count = 0;
-    return (value:new (...arg:any[])=>object,context:ClassDecoratorContext)=>{
+    return (value: new (...arg: any[]) => object, context: ClassDecoratorContext) => {
         return class extends value {
-            no:number = ++count;
-            constructor(...arg:ConstructorParameters<typeof value>){
+            no: number = ++count;
+            constructor(...arg: ConstructorParameters<typeof value>) {
                 super(...arg);
             }
         } as T
@@ -34,6 +34,29 @@ const u1 = new User('1');
 console.log(u1 instanceof User) // true;
 
 
+class Admin extends User {
+    constructor(name: string) {
+        super(name);
+    }
+    @log
+    say() {
+        console.log('hello');
+    }
+}
+
+function log(value: Function, context: ClassMethodDecoratorContext) {
+    const name = context.name;
+    context.addInitializer(function () {
+    });
+    return function(){
+        value();
+       console.log(context.name as string + 'is called');
+    }
+}
+const admin = new Admin('admin');
+admin.say()
 
 
-export {}
+
+
+export { }

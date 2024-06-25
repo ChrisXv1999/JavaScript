@@ -1,0 +1,18 @@
+.todo {
+    width: 300px;
+    margin: 100px auto;
+}
+.todo-input {
+    width: 100%;
+}
+
+.todo-list {
+    height: 200px;
+}
+
+.todo-add {
+    display: flex;
+}
+.todo-add button{
+    width: 80px;
+}
