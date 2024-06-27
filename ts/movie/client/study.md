@@ -264,6 +264,91 @@ static getDerivedStateFromError
 **异步错误无法捕获**
 **自身错误无法捕获**
 **事件中的错误无法捕获**
+### 渲染原理
+React-Dom
+react元素 React.createElement jsx
+react节点 用于渲染到ui界面的对象 通过react元素创建
+1. 节点类型
+- React Dom节点 元素类型是一个字符串
+- React 组件节点 元素类型是函数或者类
+- React TextNode 由字符串创建 
+- React Empty 空节点 null undefined false 等创建
+- React 数组节点 由数组创建
+#### 首次渲染（新节点渲染）
+1. 通过参数等值创建节点 
+2. 根据不同的节点做不同的事情  1,4 会生成真实dom元素
+ 1. 文本节点 通过 document.createTextNode 创建真实的文本节点  
+ 2. 空节点 什么都不做
+ 3. 数组节点 遍历数组 将数组每一项递归创建节点
+ 4. dom节点 通过 document.createElement 创建真实的dom对对象 遍历该节点的children 递归创建  
+ 5. 组件节点
+    - 函数组件 调用函数 返回结果 递归生成元素节点
+    - 类组件 
+        1. 创建该类的实例
+        2. 立即调用生命周期方法 static getDerivedStateFromProps
+        3. 运行对象的render方法 
+        4. 将该组件的componentDidMount 加入到执行队列 当整个虚拟dom树全部构建完毕执行
+![虚拟dom树](../docImg/节点.png)
+```tsx
+const app = <div>
+    <h1>标题{['abc',null,<p>段落<p>]}</h1>
+    <p>{undefined}</p>
+    <div>
+        //真实dom$
+                    div
+         h1                   p 
+textNode   数组节点           空节点 
+    文本节点  空节点    p
+                    文本节点
+```
+3. 生成虚拟dom树 将该树保存  
+4. 将之前生成的真实dom对象加入到容器中
+
+#### 更新节点
+- 如果调用的是ReactDom.render 进入更节点的 **对比diff更新**
+- 如果是调用setState
+ - 1. 运行生命周期函数 static getDerivedStateFromProps
+ - 2. 运行shouldComponentUpdate 如果函数返回false 终止
+ - 3. 运行render 得到一个新的节点 进行 ***对比更新***
+ - 4. 生命周期函数getSnapshotBeforeUpdate 加入执行队列
+ - 5. 生命周期函数componentDidUpdate 加入执行队列
+后续步骤 
+0. 更新虚拟dom树
+1. 完成真实dom更新
+2. 依次调用队列中的componentDidMount
+3. 依次调用队列中的getSnapshotBeforeUpdate
+4. 依次调用队列中的componentDidUpdate
+5. 执行componentWillUnMount
+##### 对比更新
+1. 假设不会出现层级的移动 对比时 直接找树对应位置的节点进行对比
+2. 不同节点类型会生成不同的结构
+3. 多个兄弟节点 通过唯一标识(key)确定对比的新节点
+- 找到了对别目标
+  判断节点类型type是否一致 
+    - 一致 根据不同的节点类型做不同的类型
+        - 空节点 不做任何事情
+        - DOM节点 直接使用之前的真实Dom对象 将属性的变化记录下来 统一进行更新 遍历新的React元素的字元素 **递归对比更新**
+        - 文本节点 直接复用 记录变化的 **nodeValue**
+        - 组件节点 
+            - 1. 复用之前的实例、
+            - 2. 运行生命周期函数 static getDerivedStateFromProps
+            - 3. 运行shouldComponentUpdate 如果函数返回false 终止
+            - 4. 运行render 得到一个新的节点 进行 ***对比更新***
+            - 5. 生命周期函数getSnapshotBeforeUpdate 加入执行队列
+            - 6. 生命周期函数componentDidUpdate 加入执行队列
+        - 数组节点 遍历数组
+        - 函数组件 直接重新调用 递归对比更新
+    - 不一致
+        创建新的节点 进入新节点的首次渲染流程 整体上卸载旧的节点
+        类组件会直接调用unComponents 
+尽量使用css控制元素显示隐藏
+如果必须移除 用空节点占位
+或者使用key 显示声明服用
+- 没有找到对比目标
+    创建新加入的节点 
+    卸载多余的节点
+key的作用 寻找**相同层级**有相同key值的新节点 
+不改变节点类型 和 节点结构
 #### Hooks
 16.8新增特性 不编写class的情况下使用state以及react特性
 本质是javascript函数
