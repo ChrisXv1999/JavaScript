@@ -1,20 +1,16 @@
-import Son from '../class/render/Son'
-import KeepAlive from './KeepLive/KeepLive'
-import { useEffect, useRef } from 'react'
+import useForceUpdate from "./hooks/useForceUpdate"
+import Count from "./components/count/Count";
+import ClassCount from "../class/components/count/Count";
+import { useCallback } from "react";
 export default function FunctionComponent() {
-  const sonRef = useRef();
-  useEffect(()=>{
-    console.log(sonRef);
+  const forceUpdate = useForceUpdate();
+  const submitValue = useCallback(() => {
+    console.log('submitValue')
   },[])
   return (
     <div>
-      <h1>FunctionComponent</h1>
-      <KeepAlive include={/MyComponent/}>
-        <Son></Son>
-        <Son></Son>
-      </KeepAlive>
-      <Son ref={sonRef}></Son>
-
+      <Count></Count>
+       <button onClick={forceUpdate}>forceUpdate</button>
     </div>
   )
 }
