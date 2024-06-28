@@ -349,6 +349,12 @@ textNode   数组节点           空节点
     卸载多余的节点
 key的作用 寻找**相同层级**有相同key值的新节点 
 不改变节点类型 和 节点结构
+#### 强制刷新
+1. 类组件使用forceUpdate 实现强制刷新 强制刷新不会运行**shouldComponentUpdate**
+2. 函数组件 使用下面方式实现  
+```tsx
+const [_,forceUpdate] = useState({});
+```
 #### Hooks
 16.8新增特性 不编写class的情况下使用state以及react特性
 本质是javascript函数
@@ -356,6 +362,12 @@ key的作用 寻找**相同层级**有相同key值的新节点
 + 更好的逻辑复用
 + 告别类组件的this指向问题
 1. useState
+    - 组件内部会维护一个状态数组
+    - 判断循环会导致状态对应不上的问题 
+    - 每次更新返回的函数引用不变 
+    - 两次更新的值完全一致**Object.is** 不会重新渲染
+    - setState 使用assign useState的更新状态函数会直接替换原有数据
+    - **状态之间没有必然的关系 应该分化成不同的状态 而不要合并成对象**
 ```tsx
 export default function Count(){
     const [count,setCount] = useState<number>(0)；
@@ -368,6 +380,14 @@ export default function Count(){
 }
 ```
 2. useEffect
+- 参数一 副作用函数 function
+    - 必须监听所有副作用函数中用的状态 否则由于闭包原因会导致一部分状态拿不到最新的 除非保证这个状态不会变
+- 参数二 依赖 Array
+    - 不传监听所有组件依赖
+- 返回值 清理函数 function
+    - 首次渲染不运行
+    - 销毁时一定运行
+    - 在副作用函数运行之前运行
 ```tsx
 useEffect(()=>{
         console.log(count);
@@ -378,6 +398,35 @@ useEffect(()=>{
     },[count,count1])
     //同时触发多个依赖会被合并
     //传空数组只会执行一次 不穿会监听所有state
+```
+3. useContext
+>用于获取上下文数据 尽量少的嵌套组件
+useContext
+```tsx
+const ctx = React.createContext();
+//用于替代 ctx.consumer
+const value = useContext(ctx);
+```
+4. useCallback
+>用于得到一个固定引用值的函数 通常用于性能优化 
+如果这个函数传递给子组件 可以避免不必要的刷新
+只要依赖项没有变化 就始终不会变化
+```tsx
+const cb = useCallback(()=>{});
+//该函数不会随着组件状态的变化而改变
+```
+5. useMemo
+类似于useCallback
+区别 
+useCallback 依赖项变化 返回函数本身
+useMemo 依赖项变化 返回函数的调用结果 类似于Vue计算属性 
+生成元素数组时 useMemo能极大的提高效率 由于没有变化 完全不会进行对比
+6. useRef
+> 解决React.createRef 每次都产生一个新的对象的问题
+接收一个默认值
+返回一个固定的对象 {current: 默认值} 不会随着状态变化而改变
+```tsx
+const timer = useRef();
 ```
 ##### 自定义Hook
 调用官方内置的hook 进行状态共享的使用use开头的函数被称为自定义函数
@@ -394,8 +443,28 @@ function useCount(initialVal:number = 0){
 }  
 const {count,add} = useCount(0); 
 ```
+##### Reducer Hook
+Flux Facebook出品的一个数据流框架
+1. 规定数据是单向流动的 
+2. 数据存储在数据仓库中
+3. action 是该变数据的唯一方式
+```tsx
+ {
+    type: '动作类型',
+    payload: {
+        //附加信息
+    }
+ }
 
-#### react-router
+```
+4. 具体改变数据的是一个函数 reducer
+    1. 参数一 state 表示当前数据仓库中的数据
+    2. 参数二 action 描述如何去改变数据
+    3. 该函数必须有一个返回结果 用于表示数据仓库变化后的数据
+    4. 数据是不可变的 引用类型必须重新创建返回
+    5. 必须是一个纯函数
+5. 必须使用dispatch 触发reducer 
+### react-router
 > yarn add react-router-dom
 #### 组件
 1. Link 导航 **to** 要导航到的路径
